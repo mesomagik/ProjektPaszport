@@ -20,5 +20,5 @@
             android:label="@string/title_activity_moje_zdrowie"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 </manifest>
