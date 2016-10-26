@@ -9,16 +9,16 @@ import android.widget.Button;
 public class Menu extends AppCompatActivity {
 
     private Button bMojeZdrowie;
-    private Button bOMnie;
+    private Button bKrotkoOMnie;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        bMojeZdrowie =(Button) findViewById(R.id.bMojedrowie);
-        bOMnie = (Button) findViewById(R.id.bJa);
+        bMojeZdrowie =(Button) findViewById(R.id.bMojeZdrowie);
+        bKrotkoOMnie = (Button) findViewById(R.id.bKrotkoOMnie);
 
-        bOMnie.setOnClickListener(new View.OnClickListener() {
+        bKrotkoOMnie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),OMnieActivity.class));
