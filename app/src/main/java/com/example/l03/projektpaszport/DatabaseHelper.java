@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Bartek on 2016-10-18.
@@ -85,6 +86,54 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.delete("Osoba","id="+osoba.getId_osoba().toString(),null );
 
+    }
+
+    public List<Osoba> getAllOsoba(){
+        List<Osoba> osoby = new ArrayList<>();
+        String query = "select * from Osoba" ;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(query, null);
+
+        if(c.moveToFirst()) {
+            do {
+                Osoba u = new Osoba(
+                        c.getInt(c.getColumnIndex("id_osoba")),
+                        c.getString(c.getColumnIndex("imie_nazwisko")),
+                        c.getString(c.getColumnIndex("zdjecie")),
+                        c.getString(c.getColumnIndex("informacje")),
+                        c.getString(c.getColumnIndex("data_ur")),
+                        c.getString(c.getColumnIndex("kontakt")),
+                        c.getString(c.getColumnIndex("relacja")));
+                osoby.add(u);
+            } while (c.moveToNext());
+            c.moveToFirst();
+        }
+        return osoby;
+    }
+
+    public List<Osoba> getAllOsobaByRelacja(String relacja){
+        List<Osoba> osoby = new ArrayList<>();
+        String query = "select * from Osoba where relacja="+relacja ;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(query, null);
+
+        if(c.moveToFirst()) {
+            do {
+                Osoba u = new Osoba(
+                        c.getInt(c.getColumnIndex("id_osoba")),
+                        c.getString(c.getColumnIndex("imie_nazwisko")),
+                        c.getString(c.getColumnIndex("zdjecie")),
+                        c.getString(c.getColumnIndex("informacje")),
+                        c.getString(c.getColumnIndex("data_ur")),
+                        c.getString(c.getColumnIndex("kontakt")),
+                        c.getString(c.getColumnIndex("relacja")));
+                    osoby.add(u);
+            } while (c.moveToNext());
+            c.moveToFirst();
+        }
+        return osoby;
     }
 
 

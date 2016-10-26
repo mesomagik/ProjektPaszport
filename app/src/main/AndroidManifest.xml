@@ -24,7 +24,9 @@
         <activity
             android:name=".OMnieActivity"
             android:label="@string/title_activity_omnie"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".EdycjaOsobActivity" />
+        <activity android:name=".DodajOsobeActivity"></activity>
     </application>
 
 </manifest>
