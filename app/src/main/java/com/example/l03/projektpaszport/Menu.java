@@ -10,25 +10,35 @@ public class Menu extends AppCompatActivity {
 
     private Button bMojeZdrowie;
     private Button bKrotkoOMnie;
+    private Button bSposobyKomunikacji;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        bMojeZdrowie =(Button) findViewById(R.id.bMojeZdrowie);
+        bMojeZdrowie = (Button) findViewById(R.id.bMojeZdrowie);
         bKrotkoOMnie = (Button) findViewById(R.id.bKrotkoOMnie);
+        bSposobyKomunikacji = (Button) findViewById(R.id.bSposobyKomunikacji);
 
         bKrotkoOMnie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),OMnieActivity.class));
+                startActivity(new Intent(getApplicationContext(), OMnieActivity.class));
             }
         });
 
         bMojeZdrowie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),MojeZdrowieActivity.class));
+                startActivity(new Intent(getApplicationContext(), MojeZdrowieActivity.class));
+            }
+        });
+
+        bSposobyKomunikacji.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), SposobyKomunikacjiActivity.class));
             }
         });
     }
