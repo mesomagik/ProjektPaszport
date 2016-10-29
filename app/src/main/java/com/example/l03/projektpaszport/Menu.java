@@ -10,6 +10,7 @@ public class Menu extends AppCompatActivity {
 
     private Button bMojeZdrowie;
     private Button bKrotkoOMnie;
+    private Button bLubieNieLubie;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,6 +18,7 @@ public class Menu extends AppCompatActivity {
 
         bMojeZdrowie =(Button) findViewById(R.id.bMojeZdrowie);
         bKrotkoOMnie = (Button) findViewById(R.id.bKrotkoOMnie);
+        bLubieNieLubie = (Button) findViewById(R.id.bLubieNieLubie);
 
         bKrotkoOMnie.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -29,6 +31,13 @@ public class Menu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),MojeZdrowieActivity.class));
+            }
+        });
+
+        bLubieNieLubie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),PreferencjeActivity.class));
             }
         });
     }

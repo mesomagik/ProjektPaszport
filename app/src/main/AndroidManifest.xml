@@ -26,7 +26,11 @@
             android:label="@string/title_activity_omnie"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".EdycjaOsobActivity" />
-        <activity android:name=".DodajOsobeActivity"></activity>
+        <activity android:name=".DodajOsobeActivity" />
+        <activity
+            android:name=".PreferencjeActivity"
+            android:label="@string/title_activity_preferencje"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
