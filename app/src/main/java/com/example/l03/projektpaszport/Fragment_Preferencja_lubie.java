@@ -12,12 +12,12 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Fragment_Preferencje_nielubie.OnFragmentInteractionListener} interface
+ * {@link Fragment_Preferencja_lubie.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Fragment_Preferencje_nielubie#newInstance} factory method to
+ * Use the {@link Fragment_Preferencja_lubie#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Fragment_Preferencje_nielubie extends Fragment {
+public class Fragment_Preferencja_lubie extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +29,7 @@ public class Fragment_Preferencje_nielubie extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public Fragment_Preferencje_nielubie() {
+    public Fragment_Preferencja_lubie() {
         // Required empty public constructor
     }
 
@@ -38,11 +38,11 @@ public class Fragment_Preferencje_nielubie extends Fragment {
      * this fragment using the provided parameters.
      *
 
-     * @return A new instance of fragment Fragment_Preferencje_nielubie.
+     * @return A new instance of fragment Fragment_Preferencja_lubie.
      */
     // TODO: Rename and change types and number of parameters
-    public static Fragment_Preferencje_nielubie newInstance() {
-        Fragment_Preferencje_nielubie fragment = new Fragment_Preferencje_nielubie();
+    public static Fragment_Preferencja_lubie newInstance() {
+        Fragment_Preferencja_lubie fragment = new Fragment_Preferencja_lubie();
 
         return fragment;
     }
@@ -60,7 +60,7 @@ public class Fragment_Preferencje_nielubie extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_preferencje_nie_lubie, container, false);
+        return inflater.inflate(R.layout.fragment_preferencja_lubie, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
