@@ -5,14 +5,14 @@ import java.io.Serializable;
 /**
  * Created by Bartek on 2016-10-24.
  */
-public class Preferencje implements Serializable{
+public class Preferencja implements Serializable{
 
     private Integer id_preferencja;
     private Boolean lubie;
     private String zdjecie;
     private String opis;
 
-    Preferencje(
+    Preferencja(
              Integer id_preferencja,
              Boolean lubie,
              String zdjecie,
@@ -57,7 +57,7 @@ public class Preferencje implements Serializable{
         this.opis = opis;
     }
 
-    public Preferencje returnObj(){
+    public Preferencja returnObj(){
         return this;
     }
 }

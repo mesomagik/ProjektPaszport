@@ -26,7 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE Osoba (id_osoba INTEGER PRIMARY KEY, imie_nazwisko TEXT, zdjecie TEXT, informacje TEXT, data_ur TEXT, kontakt TEXT, relacja TEXT);");
         db.execSQL("CREATE TABLE Choroba (id_choroby INTEGER PRIMARY KEY, nazwa TEXT, opis TEXT,pierwsza_pomoc TEXT,link_youtube TEXT);");
         db.execSQL("CREATE TABLE Lekarstwo (id_lekarstwo INTEGER PRIMARY KEY, godzina TEXT, ilosc TEXT,sposob_zazycia TEXT,zdjecie TEXT);");
-        db.execSQL("CREATE TABLE Preferencje (id_preferencja INTEGER PRIMARY KEY, lubie BOOLEAN, zdjecie TEXT,opis TEXT);");
+        db.execSQL("CREATE TABLE Preferencja (id_preferencja INTEGER PRIMARY KEY, lubie BOOLEAN, zdjecie TEXT,opis TEXT);");
         db.execSQL("CREATE TABLE SposobyKomunikacj (informacje TEXT, jezyki TEXT, charakterystyczne_zachowania TEXT, wyrazanie_checi_niecheci TEXT, przekazywanie_stanow_emocjonalnych TEXT);");
         db.execSQL("CREATE TABLE WazneInformacje (moje_zmysly TEXT, przyjmowanie_jedzenia TEXT, przyjmowanie_plynów TEXT, moje_bezpieczenstwo TEXT, korzystanie_z_toalety TEXT, opieka_osobista TEXT, sen TEXT, alergie TEXT);");
 
@@ -38,7 +38,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS Osoba");
         db.execSQL("DROP TABLE IF EXISTS Choroba");
         db.execSQL("DROP TABLE IF EXISTS Lekarstwo");
-        db.execSQL("DROP TABLE IF EXISTS Preferencje");
+        db.execSQL("DROP TABLE IF EXISTS Preferencja");
         db.execSQL("DROP TABLE IF EXISTS SposobyKomunikacj");
         db.execSQL("DROP TABLE IF EXISTS WazneInformacje");
 

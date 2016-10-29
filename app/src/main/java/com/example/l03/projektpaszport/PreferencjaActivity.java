@@ -17,11 +17,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.widget.TextView;
-
-public class PreferencjeActivity extends AppCompatActivity
-                                implements  Fragment_Preferencje_lubie.OnFragmentInteractionListener,
-                                            Fragment_Preferencje_nielubie.OnFragmentInteractionListener{
+public class PreferencjaActivity extends AppCompatActivity
+                                implements  Fragment_Preferencja_lubie.OnFragmentInteractionListener,
+                                            Fragment_Preferencja_nielubie.OnFragmentInteractionListener{
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -41,7 +39,7 @@ public class PreferencjeActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_preferencje);
+        setContentView(R.layout.activity_preferencja);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -121,7 +119,7 @@ public class PreferencjeActivity extends AppCompatActivity
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_preferencje_lubie, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_preferencja_lubie, container, false);
             //TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             //textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
@@ -142,9 +140,9 @@ public class PreferencjeActivity extends AppCompatActivity
         public Fragment getItem(int position) {
             switch(position) {
                 case 0:
-                    return Fragment_Preferencje_lubie.newInstance();
+                    return Fragment_Preferencja_lubie.newInstance();
                 case 1:
-                    return Fragment_Preferencje_nielubie.newInstance();
+                    return Fragment_Preferencja_nielubie.newInstance();
             }
             return null;
         }

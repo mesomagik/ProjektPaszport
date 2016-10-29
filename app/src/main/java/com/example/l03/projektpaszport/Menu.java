@@ -37,7 +37,7 @@ public class Menu extends AppCompatActivity {
         bLubieNieLubie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),PreferencjeActivity.class));
+                startActivity(new Intent(getApplicationContext(),PreferencjaActivity.class));
             }
         });
     }
