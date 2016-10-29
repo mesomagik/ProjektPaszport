@@ -136,6 +136,72 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return osoby;
     }
 
+    //Preferencja
+    //CREATE TABLE Preferencja (id_preferencja INTEGER PRIMARY KEY, lubie BOOLEAN, zdjecie TEXT,opis TEXT);
+
+    public long createPreferencja( Integer id_preferencja,Boolean lubie,String zdjecie,String opis) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("id_preferencja", id_preferencja);
+        values.put("lubie", lubie);
+        values.put("zdjecie", zdjecie);
+        values.put("opis", opis);
+
+        long preferencja_id = db.insert("Preferencja", null, values); //zwraca id
+        return preferencja_id;
+
+    }
 
 
+
+    public int updatePreferencja(Preferencja preferencja) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("id_preferencja", preferencja.getId_preferencja());
+        values.put("lubie", preferencja.getLubie());
+        values.put("zdjecie", preferencja.getZdjecie());
+        values.put("opis", preferencja.getOpis());
+
+        Integer wynik = db.update("Preferencja", values, "id=" + preferencja.getId_preferencja().toString(), null);
+        Log.e("wynik edycji",wynik.toString());
+        return wynik;
+
+    }
+
+    public void deletePreferencja(Preferencja preferencja) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete("Osoba","id="+preferencja.getId_preferencja().toString(),null );
+
+    }
+
+    public List<Preferencja> getAllPreferencjaByLubie(Boolean lubie){
+        List<Preferencja> Preferencje = new ArrayList<>();
+        String parametr;
+        if(lubie){
+            parametr = "TRUE";
+        } else {
+            parametr = "FALSE";
+        }
+        String query = "select * from Preferencja where lubie="+parametr ;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(query, null);
+
+        if(c.moveToFirst()) {
+            do {
+                Preferencje.add(
+                        new Preferencja(c.getInt(c.getColumnIndex("id_preferencja")),
+                                        c.getInt(c.getColumnIndex("lubie")) > 0,
+                                        c.getString(c.getColumnIndex("zdjecie")),
+                                        c.getString(c.getColumnIndex("opis"))
+                        )
+                );
+            } while (c.moveToNext());
+            c.moveToFirst();
+        }
+        return Preferencje;
+    }
 }
