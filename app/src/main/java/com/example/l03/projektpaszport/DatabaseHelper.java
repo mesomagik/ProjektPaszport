@@ -179,13 +179,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public List<Preferencja> getAllPreferencjaByLubie(Boolean lubie){
         List<Preferencja> Preferencje = new ArrayList<>();
-        String parametr;
-        if(lubie){
-            parametr = "TRUE";
-        } else {
-            parametr = "FALSE";
-        }
-        String query = "select * from Preferencja where lubie="+parametr ;
+
+        String query = "select * from Preferencja where lubie="+lubie.toString();
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(query, null);
