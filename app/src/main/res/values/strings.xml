@@ -91,11 +91,12 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+    <string name="edycja_osob">Edycja osób</string>
     <string name="section_format">Hello World from section: %1$d</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_omnie">OMnieActivity</string>
+    <string name="title_activity_omnie">O Mnie</string>
     <string name="title_activity_sposoby_komunikacji">Sposoby Komunikacji</string>
     <string name="fragment_sposoby_moje_zmysly">Moje zmysły</string>
     <string name="fragment_sposoby_przekazywanie_emocji">Przekazywanie emocji</string>

@@ -3,6 +3,7 @@
     package="com.example.l03.projektpaszport">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-sdk android:minSdkVersion="17" android:targetSdkVersion="21" />
 
     <application
         android:allowBackup="true"

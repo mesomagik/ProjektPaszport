@@ -46,7 +46,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public long createOsoba(Integer id_osoba, String imie_nazwisko, String zdjecie, String informacje, String data_ur, String kontakt, String relacja) {
+    public long createOsoba(String imie_nazwisko, String zdjecie, String informacje, String data_ur, String kontakt, String relacja) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
