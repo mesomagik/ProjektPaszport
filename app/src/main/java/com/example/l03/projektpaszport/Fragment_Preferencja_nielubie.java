@@ -8,15 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link Fragment_Preferencja_nielubie.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link Fragment_Preferencja_nielubie#newInstance} factory method to
- * create an instance of this fragment.
+ * Created by Krzysiek on 02.11.2016.
  */
+
 public class Fragment_Preferencja_nielubie extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
