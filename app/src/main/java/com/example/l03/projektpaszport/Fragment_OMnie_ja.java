@@ -29,10 +29,13 @@ import java.util.List;
  */
 public class Fragment_OMnie_ja extends Fragment {
 
-    private Button bDodajOsobe;
-    private ListView lvListaOsob;
-    private List<Osoba> listaOsob;
+    private Osoba osoba;
     private DatabaseHelper db;
+    private List<Osoba> listaOsob;
+    private TextView tvImieNazwisko;
+    private TextView tvDataUrodzenia;
+    private TextView tvKontakt;
+    private ImageView ivPacjent;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -80,23 +83,25 @@ public class Fragment_OMnie_ja extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_fragment__omnie_ja, container, false);
 
 
-        bDodajOsobe = (Button) rootView.findViewById(R.id.bDodajOsobe);
-        lvListaOsob = (ListView) rootView.findViewById(R.id.lvListaOsob);
+        tvImieNazwisko = (TextView) rootView.findViewById(R.id.bDodajOsobe);
+        tvKontakt = (TextView) rootView.findViewById(R.id.tvKontakt);
+        tvDataUrodzenia = (TextView) rootView.findViewById(R.id.tvDataUrodzenia);
+        ivPacjent = (ImageView) rootView.findViewById(R.id.ivZdjecie);
+
 
         db = new DatabaseHelper(getContext());
 
-        listaOsob = db.getAllOsoba();
-        Log.e("ilosc osob w liscie", String.valueOf(listaOsob.size()));
+        listaOsob = db.getAllOsobaByRelacja("pacjent");
+        Log.e("ilosc osob w liscie", String.valueOf(listaOsob.get(0).getZdjecie()));
 
-        final OsobyAdapter adapter = new OsobyAdapter();
-        lvListaOsob.setAdapter(adapter);
+        if(listaOsob.size()==1){
+          //  Bitmap bitmap = BitmapFactory.decodeFile(listaOsob.get(0).getZdjecie());
+         //   ivPacjent.setImageBitmap(bitmap);
 
-        bDodajOsobe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(),DodajOsobeActivity.class));
-            }
-        });
+           // tvDataUrodzenia.setText("Data urodzenia: "+listaOsob.get(0).getData_ur());
+          //  tvKontakt.setText(listaOsob.get(0).getKontakt());
+          //  tvImieNazwisko.setText(listaOsob.get(0).getImie_nazwisko());
+        }
 
         return rootView;
 
@@ -141,58 +146,4 @@ public class Fragment_OMnie_ja extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    private class OsobyAdapter extends BaseAdapter {
-
-        @Override
-        public int getCount() {
-            if (listaOsob != null && listaOsob.size() != 0)
-                return listaOsob.size();
-            return 0;
-
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return listaOsob.get(position);
-        }
-
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            final ViewHolder holder;
-            if (convertView == null) {
-                holder = new ViewHolder();
-                LayoutInflater inflater = LayoutInflater.from(getActivity()); //Krzychu, tutaj rozwiązanie, trzeba było pobrać z aktywności
-                convertView = inflater.inflate(R.layout.lista_osoba, null);
-                holder.imie_nazwisko = (TextView) convertView.findViewById(R.id.tvImieNazwisko);
-                holder.relacja = (TextView) convertView.findViewById(R.id.tvRelacja);
-                holder.zdjecie = (ImageView) convertView.findViewById(R.id.ivZdjecie);
-
-                Bitmap bitmap = BitmapFactory.decodeFile(listaOsob.get(position).getZdjecie());
-                holder.zdjecie.setImageBitmap(bitmap);
-
-                holder.imie_nazwisko.setText(listaOsob.get(position).getImie_nazwisko());
-                holder.relacja.setText(listaOsob.get(position).getRelacja());
-
-                convertView.setTag(holder);
-            } else {
-                holder = (ViewHolder) convertView.getTag();
-            }
-            holder.ref = position;
-
-            return convertView;
-        }
-
-        private class ViewHolder {
-            TextView imie_nazwisko;
-            TextView relacja;
-            ImageView zdjecie;
-            int ref;
-        }
-    }
 }

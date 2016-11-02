@@ -12,26 +12,47 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="O mnie"
-        android:id="@+id/textView"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Kontakt"
+        android:id="@+id/tvKontakt"
+        android:layout_row="3"
+        android:layout_column="1"
+        android:textSize="30dp"
+        android:layout_below="@+id/tvDataUrodzenia"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Imie Nazwisko"
+        android:id="@+id/tvImieNazwisko"
+        android:layout_row="1"
+        android:layout_column="1"
+        android:textSize="30dp"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/ivPacjent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Data Urodzenia"
+        android:id="@+id/tvDataUrodzenia"
+        android:layout_row="2"
+        android:layout_column="1"
+        android:textSize="30dp"
+        android:layout_marginTop="45dp"
+        android:layout_below="@+id/tvImieNazwisko"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/ivPacjent"
+        android:layout_row="0"
+        android:layout_column="1"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dodaj nową osobę"
-        android:id="@+id/bDodajOsobe"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
-
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/lvListaOsob"
-        android:choiceMode="singleChoice"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentStart="true" />
+        android:layout_alignStart="@+id/tvDataUrodzenia" />
 </RelativeLayout>

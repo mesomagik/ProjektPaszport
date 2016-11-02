@@ -1,12 +1,23 @@
 package com.example.l03.projektpaszport;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.List;
 
 
 /**
@@ -18,6 +29,12 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class Fragment_OMnie_opiekunowie extends Fragment {
+
+    private Button bDodajOsobe;
+    private ListView lvListaOsob;
+    private List<Osoba> listaOsob;
+    private DatabaseHelper db;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -59,8 +76,24 @@ public class Fragment_OMnie_opiekunowie extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment__omnie_opiekunowie, container, false);
+
+        View rootView = inflater.inflate(R.layout.fragment__omnie_opiekunowie, container, false);
+
+
+        bDodajOsobe = (Button) rootView.findViewById(R.id.bDodajOsobe);
+        lvListaOsob = (ListView) rootView.findViewById(R.id.lvListaOsob);
+
+        db = new DatabaseHelper(getContext());
+
+        listaOsob = db.getAllOsobaByRelacja("opiekun");
+        Log.e("ilosc osob w liscie", String.valueOf(listaOsob.size()));
+
+        final OsobyAdapter adapter = new OsobyAdapter();
+        lvListaOsob.setAdapter(adapter);
+
+
+
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -100,5 +133,60 @@ public class Fragment_OMnie_opiekunowie extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    private class OsobyAdapter extends BaseAdapter {
+
+        @Override
+        public int getCount() {
+            if (listaOsob != null && listaOsob.size() != 0)
+                return listaOsob.size();
+            return 0;
+
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return listaOsob.get(position);
+        }
+
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            final ViewHolder holder;
+            if (convertView == null) {
+                holder = new ViewHolder();
+                LayoutInflater inflater = LayoutInflater.from(getActivity()); //Krzychu, tutaj rozwiązanie, trzeba było pobrać z aktywności
+                convertView = inflater.inflate(R.layout.lista_osoba, null);
+                holder.imie_nazwisko = (TextView) convertView.findViewById(R.id.tvImieNazwisko);
+                holder.relacja = (TextView) convertView.findViewById(R.id.tvRelacja);
+                holder.zdjecie = (ImageView) convertView.findViewById(R.id.ivZdjecie);
+
+                Bitmap bitmap = BitmapFactory.decodeFile(listaOsob.get(position).getZdjecie());
+                holder.zdjecie.setImageBitmap(bitmap);
+
+                holder.imie_nazwisko.setText(listaOsob.get(position).getImie_nazwisko());
+                holder.relacja.setText(listaOsob.get(position).getRelacja());
+
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+            holder.ref = position;
+
+            return convertView;
+        }
+
+        private class ViewHolder {
+            TextView imie_nazwisko;
+            TextView relacja;
+            ImageView zdjecie;
+            int ref;
+        }
     }
 }

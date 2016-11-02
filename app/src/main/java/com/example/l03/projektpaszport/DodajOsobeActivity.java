@@ -95,9 +95,16 @@ public class DodajOsobeActivity extends AppCompatActivity {
 
         relacjaList = new ArrayList<>();
 
+        if(!db.checkPacjentDatabase()){
+            relacjaList.add("pacjent");
+        }
+
         relacjaList.add("rodzina");
         relacjaList.add("lekarz");
         relacjaList.add("przyjaciel");
+        relacjaList.add("opiekun");
+
+
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>
                 (this, android.R.layout.simple_spinner_item,relacjaList);

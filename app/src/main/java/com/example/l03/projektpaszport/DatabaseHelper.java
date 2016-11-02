@@ -111,9 +111,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return osoby;
     }
 
+    public Boolean checkPacjentDatabase() {
+        String query = "select * from Osoba where relacja='pacjent'";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(query, null);
+
+        if (c.moveToFirst()) {
+            do {
+                return true;
+            } while (c.moveToNext());
+        }
+        return false;
+    }
+
     public List<Osoba> getAllOsobaByRelacja(String relacja) {
         List<Osoba> osoby = new ArrayList<>();
-        String query = "select * from Osoba where relacja=" + relacja;
+        String query = "select * from Osoba where relacja='" + relacja+"'";
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(query, null);
