@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -66,18 +67,29 @@ public class Fragment_Preferencja_lubie extends Fragment {
         db = new DatabaseHelper(getContext());
 
         //preferencje = db.getAllPreferencjaByLubie(true);
+
         preferencje = new ArrayList<Preferencja>();
         preferencje.add(new Preferencja(0,true,"C:/Users/Krzysiek/Pictures/home.png","przykładowy opis"));
 
         final PreferencjaLubieAdapter adapter = new PreferencjaLubieAdapter();
         gridView.setAdapter(adapter);
 
-        gridView.setOnClickListener(new View.OnClickListener() {
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.e("naciśnięto element","true");
+            }
+        });
+
+
+/*        gridView.setOnClickListener(new View.OnClickListener() {  //powinno być setOnItemClickListener bo wybierasz item z listy
             @Override
             public void onClick(View v) {
                 Log.e("naciśnięto element","true");
             }
         });
+
+        */
         return rootView;
     }
 

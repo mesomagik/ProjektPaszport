@@ -32,6 +32,10 @@ public class PreferencjaActivity extends AppCompatActivity implements   Fragment
      * may be best to switch to a
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
+
+
+
+
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     /**

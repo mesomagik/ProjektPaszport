@@ -83,10 +83,10 @@ public class Fragment_OMnie_ja extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_fragment__omnie_ja, container, false);
 
 
-        tvImieNazwisko = (TextView) rootView.findViewById(R.id.bDodajOsobe);
+        tvImieNazwisko = (TextView) rootView.findViewById(R.id.tvImieNazwisko);
         tvKontakt = (TextView) rootView.findViewById(R.id.tvKontakt);
         tvDataUrodzenia = (TextView) rootView.findViewById(R.id.tvDataUrodzenia);
-        ivPacjent = (ImageView) rootView.findViewById(R.id.ivZdjecie);
+        ivPacjent = (ImageView) rootView.findViewById(R.id.ivPacjent);
 
 
         db = new DatabaseHelper(getContext());
@@ -95,12 +95,12 @@ public class Fragment_OMnie_ja extends Fragment {
         Log.e("ilosc osob w liscie", String.valueOf(listaOsob.get(0).getZdjecie()));
 
         if(listaOsob.size()==1){
-          //  Bitmap bitmap = BitmapFactory.decodeFile(listaOsob.get(0).getZdjecie());
-         //   ivPacjent.setImageBitmap(bitmap);
+            Bitmap bitmap = BitmapFactory.decodeFile(listaOsob.get(0).getZdjecie());
+            ivPacjent.setImageBitmap(bitmap);
 
-           // tvDataUrodzenia.setText("Data urodzenia: "+listaOsob.get(0).getData_ur());
-          //  tvKontakt.setText(listaOsob.get(0).getKontakt());
-          //  tvImieNazwisko.setText(listaOsob.get(0).getImie_nazwisko());
+            tvDataUrodzenia.setText("Data urodzenia: "+listaOsob.get(0).getData_ur());
+            tvKontakt.setText(listaOsob.get(0).getKontakt());
+            tvImieNazwisko.setText(listaOsob.get(0).getImie_nazwisko());
         }
 
         return rootView;
