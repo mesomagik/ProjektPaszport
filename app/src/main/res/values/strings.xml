@@ -98,6 +98,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_omnie">O Mnie</string>
     <string name="title_activity_sposoby_komunikacji">Sposoby Komunikacji</string>
+    <string name="title_activity_preferencja">Lubię / Nie lubię</string>
     <string name="fragment_sposoby_moje_zmysly">Moje zmysły</string>
     <string name="fragment_sposoby_przekazywanie_emocji">Przekazywanie emocji</string>
     <string name="fragment_sposoby_komunikacji_zachowania">Charakterystyczne zachowania</string>

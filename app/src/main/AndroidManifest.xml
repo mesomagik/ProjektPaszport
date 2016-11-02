@@ -32,6 +32,10 @@
             android:name=".SposobyKomunikacjiActivity"
             android:label="@string/title_activity_sposoby_komunikacji"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".PreferencjaActivity"
+            android:label="@string/title_activity_preferencja"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
