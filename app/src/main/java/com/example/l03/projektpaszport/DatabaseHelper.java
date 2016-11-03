@@ -74,7 +74,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("kontakt", osoba.getKontakt());
         values.put("relacja", osoba.getRelacja());
 
-        Integer wynik = db.update("Osoba", values, "id=" + osoba.getId_osoba().toString(), null);
+        Integer wynik = db.update("Osoba", values, "id_osoba='" + osoba.getId_osoba().toString()+"'", null);
         Log.e("wynik edycji", wynik.toString());
         return wynik;
 
@@ -83,7 +83,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void deleteOsoba(Osoba osoba) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        db.delete("Osoba", "id=" + osoba.getId_osoba().toString(), null);
+        db.delete("Osoba", "id_osoba=" + osoba.getId_osoba().toString(), null);
 
     }
 

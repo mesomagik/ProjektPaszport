@@ -92,7 +92,7 @@ public class Osoba implements Serializable{
         this.relacja = relacja;
     }
 
-    public Osoba returnObj(){
+    public Osoba getObj(){
         return this;
     }
 }

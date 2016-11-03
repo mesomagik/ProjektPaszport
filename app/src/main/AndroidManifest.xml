@@ -2,8 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.l03.projektpaszport">
 
+    <uses-sdk
+        android:minSdkVersion="17"
+        android:targetSdkVersion="21" />
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-sdk android:minSdkVersion="17" android:targetSdkVersion="21" />
+
+    <android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:allowBackup="true"
@@ -31,11 +37,12 @@
         <activity
             android:name=".SposobyKomunikacjiActivity"
             android:label="@string/title_activity_sposoby_komunikacji"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".PreferencjaActivity"
             android:label="@string/title_activity_preferencja"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".EdytujOsobeActivity"></activity>
     </application>
 
 </manifest>
