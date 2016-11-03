@@ -125,6 +125,9 @@ public class EdycjaOsobActivity extends AppCompatActivity {
                 Bitmap bitmap = BitmapFactory.decodeFile(listaOsob.get(position).getZdjecie());
                 holder.zdjecie.setImageBitmap(bitmap);
 
+                holder.imie_nazwisko.setText(listaOsob.get(position).getImie_nazwisko());
+                holder.relacja.setText(listaOsob.get(position).getRelacja());
+
 
                 convertView.setTag(holder);
             } else {

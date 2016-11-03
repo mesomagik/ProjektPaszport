@@ -42,7 +42,8 @@
             android:name=".PreferencjaActivity"
             android:label="@string/title_activity_preferencja"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".EdytujOsobeActivity"></activity>
+        <activity android:name=".EdytujOsobeActivity" />
+        <activity android:name=".SzczegolyOsobyActivity"></activity>
     </application>
 
 </manifest>

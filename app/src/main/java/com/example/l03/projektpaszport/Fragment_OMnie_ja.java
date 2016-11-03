@@ -92,7 +92,7 @@ public class Fragment_OMnie_ja extends Fragment {
         db = new DatabaseHelper(getContext());
 
         listaOsob = db.getAllOsobaByRelacja("pacjent");
-        Log.e("ilosc osob w liscie", String.valueOf(listaOsob.get(0).getZdjecie()));
+
 
         if(listaOsob.size()==1){
             Bitmap bitmap = BitmapFactory.decodeFile(listaOsob.get(0).getZdjecie());

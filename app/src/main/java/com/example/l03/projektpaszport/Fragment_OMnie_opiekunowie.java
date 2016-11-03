@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -91,7 +92,14 @@ public class Fragment_OMnie_opiekunowie extends Fragment {
         final OsobyAdapter adapter = new OsobyAdapter();
         lvListaOsob.setAdapter(adapter);
 
-
+        lvListaOsob.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getContext(),SzczegolyOsobyActivity.class);
+                intent.putExtra("osoba",listaOsob.get(position).getObj());
+                startActivity(intent);
+            }
+        });
 
         return rootView;
     }

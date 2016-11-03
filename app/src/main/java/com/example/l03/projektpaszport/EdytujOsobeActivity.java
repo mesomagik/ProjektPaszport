@@ -67,10 +67,11 @@ public class EdytujOsobeActivity extends AppCompatActivity {
         ivZdjecie = (ImageView) findViewById(R.id.ivZdjecie);
         tvDataUrodzenia = (TextView) findViewById(R.id.tvDataUrodzenia);
         db = new DatabaseHelper(getApplicationContext());
-        sciezka = osoba.getZdjecie();
+
 
         Intent intent = getIntent();
         osoba = (Osoba) intent.getSerializableExtra("osoba");
+        sciezka = osoba.getZdjecie();
 
         Bitmap bitmap = BitmapFactory.decodeFile(osoba.getZdjecie());
         ivZdjecie.setImageBitmap(bitmap);

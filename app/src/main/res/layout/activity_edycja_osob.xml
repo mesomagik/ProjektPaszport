@@ -33,5 +33,6 @@
         android:id="@+id/lvListaOsob"
         android:choiceMode="singleChoice"
         android:layout_below="@+id/textView"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/bDodajOsobe" />
 </RelativeLayout>
