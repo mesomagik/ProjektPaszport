@@ -160,11 +160,11 @@ public class SposobyKomunikacjiActivity extends AppCompatActivity
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+                    return "Moje zmysły";
                 case 1:
-                    return "SECTION 2";
+                    return "Przekazywanie emocji";
                 case 2:
-                    return "SECTION 3";
+                    return "Charakterystyczne zachowania";
             }
             return null;
         }

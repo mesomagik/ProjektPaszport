@@ -102,4 +102,6 @@
     <string name="fragment_sposoby_moje_zmysly">Moje zmysły</string>
     <string name="fragment_sposoby_przekazywanie_emocji">Przekazywanie emocji</string>
     <string name="fragment_sposoby_komunikacji_zachowania">Charakterystyczne zachowania</string>
+    <string name="title_activity_dodaj_sposoby_komunikacji">Dodaj informacje</string>
+
 </resources>

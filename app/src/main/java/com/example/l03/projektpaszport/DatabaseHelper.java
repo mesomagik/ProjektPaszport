@@ -149,6 +149,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return osoby;
     }
 
+    public SposobyKomunikacji getSposobyKomunikacji() {
+        SposobyKomunikacji sposobyKomunikacji = null;
+        String query = "select * from SposobyKomunikacji";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(query, null);
+
+        if (c.moveToFirst()) {
+            do {
+                sposobyKomunikacji = new SposobyKomunikacji(
+                        c.getString(c.getColumnIndex("moje_zmysly")),
+                        c.getString(c.getColumnIndex("charakterystyczne_zachowania")),
+                        c.getString(c.getColumnIndex("moje_zmysly")));
+            } while (c.moveToNext());
+            c.moveToFirst();
+        }
+        return sposobyKomunikacji;
+    }
+
     public long createSposobyKomunikacji(String moje_zmysly, String charakterystyczne_zachowania, String przekazywanie_emocji) {
         SQLiteDatabase db = this.getWritableDatabase();
 

@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 /**
@@ -18,6 +19,11 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class Fragment_SposobyKomunikacji_przekazywanie_emocji extends Fragment {
+
+    private TextView tvPrzekazywanieEmocji;
+    private DatabaseHelper db;
+    private SposobyKomunikacji sposobyKomunikacji;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -70,7 +76,17 @@ public class Fragment_SposobyKomunikacji_przekazywanie_emocji extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sposoby_komunikacji_przekazywanie_emocji, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_sposoby_komunikacji_przekazywanie_emocji, container, false);
+        tvPrzekazywanieEmocji = (TextView) rootView.findViewById(R.id.tvPrzekazywanieEmocji);
+
+        db = new DatabaseHelper(getContext());
+
+        sposobyKomunikacji = db.getSposobyKomunikacji();
+        if (sposobyKomunikacji != null)
+            tvPrzekazywanieEmocji.setText("Przekazywanie emocji: " + sposobyKomunikacji.getPrzekazywanie_emocji());
+        else
+            tvPrzekazywanieEmocji.setText("Dodaj informacje");
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
