@@ -38,7 +38,7 @@ public class SzczegolyOsobyActivity extends AppCompatActivity {
 
         tvImieNazwisko.setText(osoba.getImie_nazwisko());
         tvRelacja.setText(osoba.getRelacja());
-        tvDataUrodzenia.setText("Data urodzenia:"+osoba.getData_ur());
+        tvDataUrodzenia.setText("Data urodzenia: "+osoba.getData_ur());
         tvInformacje.setText(osoba.getInformacje());
         tvKontakt.setText(osoba.getKontakt());
 

@@ -91,6 +91,9 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Ustawienia</string>
+    <string name="informacje">Edycja Informacji</string>
+    <string name="osoby">Edycja Osób</string>
+
     <string name="edycja_osob">Edycja osób</string>
     <string name="section_format">Hello World from section: %1$d</string>
 

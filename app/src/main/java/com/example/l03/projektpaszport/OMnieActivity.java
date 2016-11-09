@@ -83,8 +83,11 @@ public class OMnieActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.osoby) {
             startActivity(new Intent(getApplicationContext(),EdycjaOsobActivity.class));
+        }
+        if (id == R.id.informacje) {
+            startActivity(new Intent(getApplicationContext(),EdytujWazneInformacjeActivity.class));
         }
 
         return super.onOptionsItemSelected(item);

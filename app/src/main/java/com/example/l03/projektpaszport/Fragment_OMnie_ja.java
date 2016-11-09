@@ -1,20 +1,15 @@
 package com.example.l03.projektpaszport;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -85,7 +80,7 @@ public class Fragment_OMnie_ja extends Fragment {
 
         tvImieNazwisko = (TextView) rootView.findViewById(R.id.tvImieNazwisko);
         tvKontakt = (TextView) rootView.findViewById(R.id.tvKontakt);
-        tvDataUrodzenia = (TextView) rootView.findViewById(R.id.tvDataUrodzenia);
+        tvDataUrodzenia = (TextView) rootView.findViewById(R.id.tvprzyjmowanie_plynów);
         ivPacjent = (ImageView) rootView.findViewById(R.id.ivPacjent);
 
 

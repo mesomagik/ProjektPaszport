@@ -4,9 +4,11 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 /**
@@ -18,6 +20,17 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class Fragment_OMnie_info_podstawowe extends Fragment {
+
+    private TextView tvprzyjmowanie_jedzenia;
+    private TextView tvprzyjmowanie_plynów;
+    private TextView tvmoje_bezpieczenstwo;
+    private TextView tvkorzystanie_z_toalety;
+    private TextView tvopieka_osobista;
+    private TextView tvsen;
+    private TextView tvalergie;
+    private DatabaseHelper db;
+    private WazneInformacje wazneInformacje;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -59,8 +72,37 @@ public class Fragment_OMnie_info_podstawowe extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fagment__omnie_info_podstawowe, container, false);
+        View rootView = inflater.inflate(R.layout.fagment__omnie_info_podstawowe, container, false);
+
+
+          tvprzyjmowanie_jedzenia = (TextView) rootView.findViewById(R.id.tvprzyjmowanie_jedzenia);
+          tvprzyjmowanie_plynów = (TextView) rootView.findViewById(R.id.tvprzyjmowanie_plynów);
+          tvmoje_bezpieczenstwo = (TextView) rootView.findViewById(R.id.tvmoje_bezpieczenstwo);
+          tvkorzystanie_z_toalety = (TextView) rootView.findViewById(R.id.tvkorzystanie_z_toalety);
+          tvopieka_osobista = (TextView) rootView.findViewById(R.id.tvopieka_osobista);
+          tvsen = (TextView) rootView.findViewById(R.id.tvsen);
+          tvalergie = (TextView) rootView.findViewById(R.id.tvalergie);
+
+        db = new DatabaseHelper(getContext());
+
+
+        if(!db.checkWazneInformacjeDatabase()) {
+            db.createWazneInformacje("brak informacji", "brak informacji", "brak informacji", "brak informacji", "brak informacji", "brak informacji", "brak informacji");
+        }
+        wazneInformacje = db.getWazneInformacje();
+        Log.e("ilosc w wazne", wazneInformacje.getKorzystanie_z_toalety());
+
+        tvprzyjmowanie_jedzenia.setText(wazneInformacje.getPrzyjmowanie_jedzenia());
+        tvprzyjmowanie_plynów.setText(wazneInformacje.getPrzyjmowanie_plynów());
+        tvmoje_bezpieczenstwo.setText(wazneInformacje.getMoje_bezpieczenstwo());
+        tvkorzystanie_z_toalety.setText(wazneInformacje.getKorzystanie_z_toalety());
+        tvopieka_osobista.setText(wazneInformacje.getOpieka_osobista());
+        tvsen.setText(wazneInformacje.getSen());
+        tvalergie.setText(wazneInformacje.getAlergie());
+
+
+        return rootView;
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

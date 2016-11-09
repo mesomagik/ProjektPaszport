@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="relacja"
-                android:id="@+id/tvRelacja" />
+                android:id="@+id/tvmoje_bezpieczenstwo" />
         </LinearLayout>
 
     </LinearLayout>

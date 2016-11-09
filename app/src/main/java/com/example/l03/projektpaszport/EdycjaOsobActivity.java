@@ -18,8 +18,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 public class EdycjaOsobActivity extends AppCompatActivity {
@@ -119,7 +117,7 @@ public class EdycjaOsobActivity extends AppCompatActivity {
                 LayoutInflater inflater = EdycjaOsobActivity.this.getLayoutInflater();
                 convertView = inflater.inflate(R.layout.lista_osoba, null);
                 holder.imie_nazwisko = (TextView) convertView.findViewById(R.id.tvImieNazwisko);
-                holder.relacja = (TextView) convertView.findViewById(R.id.tvRelacja);
+                holder.relacja = (TextView) convertView.findViewById(R.id.tvmoje_bezpieczenstwo);
                 holder.zdjecie = (ImageView) convertView.findViewById(R.id.ivZdjecie);
 
                 Bitmap bitmap = BitmapFactory.decodeFile(listaOsob.get(position).getZdjecie());

@@ -17,7 +17,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public DatabaseHelper(Context context) {
-        super(context, "baza", null, 3);
+        super(context, "baza", null, 5);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE Lekarstwo (id_lekarstwo INTEGER PRIMARY KEY, godzina TEXT, ilosc TEXT,sposob_zazycia TEXT,zdjecie TEXT);");
         db.execSQL("CREATE TABLE Preferencja (id_preferencja INTEGER PRIMARY KEY, lubie BOOLEAN, zdjecie TEXT,opis TEXT);");
         db.execSQL("CREATE TABLE SposobyKomunikacji (moje_zmysly TEXT, charakterystyczne_zachowania TEXT, przekazywanie_emocji TEXT);");
-        db.execSQL("CREATE TABLE WazneInformacje (moje_zmysly TEXT, przyjmowanie_jedzenia TEXT, przyjmowanie_plynów TEXT, moje_bezpieczenstwo TEXT, korzystanie_z_toalety TEXT, opieka_osobista TEXT, sen TEXT, alergie TEXT);");
+        db.execSQL("CREATE TABLE WazneInformacje (przyjmowanie_jedzenia TEXT, przyjmowanie_plynów TEXT, moje_bezpieczenstwo TEXT, korzystanie_z_toalety TEXT, opieka_osobista TEXT, sen TEXT, alergie TEXT);");
 
     }
 
@@ -194,10 +194,87 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void deleteSposobyKomunikacji(SposobyKomunikacji sposobyKomunikacji) {
+
         SQLiteDatabase db = this.getWritableDatabase();
 
         db.delete("SposobyKomunikacji", "id=0", null);
     }
+
+    /******************** Ważne Informacje ****************************/
+
+    public Boolean checkWazneInformacjeDatabase() {
+        String query = "select * from WazneInformacje";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(query, null);
+
+        if (c.moveToFirst()) {
+            do {
+                return true;
+            } while (c.moveToNext());
+        }
+        return false;
+    }
+
+    public WazneInformacje getWazneInformacje() {
+
+        WazneInformacje wazneInformacje = null;
+        String query = "select * from WazneInformacje";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(query, null);
+
+        if (c.moveToFirst()) {
+            do {
+                 wazneInformacje = new WazneInformacje(
+                        c.getString(c.getColumnIndex("przyjmowanie_jedzenia")),
+                        c.getString(c.getColumnIndex("przyjmowanie_plynów")),
+                        c.getString(c.getColumnIndex("moje_bezpieczenstwo")),
+                        c.getString(c.getColumnIndex("korzystanie_z_toalety")),
+                        c.getString(c.getColumnIndex("opieka_osobista")),
+                        c.getString(c.getColumnIndex("sen")),
+                        c.getString(c.getColumnIndex("alergie")));
+            } while (c.moveToNext());
+            c.moveToFirst();
+        }
+
+        return wazneInformacje;
+    }
+
+
+    public long createWazneInformacje(String przyjmowanie_jedzenia,String przyjmowanie_plynów,String moje_bezpieczenstwo,String korzystanie_z_toalety,String opieka_osobista,String sen,String alergie) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("przyjmowanie_jedzenia", przyjmowanie_jedzenia);
+        values.put("przyjmowanie_plynów", przyjmowanie_plynów);
+        values.put("moje_bezpieczenstwo", moje_bezpieczenstwo);
+        values.put("korzystanie_z_toalety", korzystanie_z_toalety);
+        values.put("opieka_osobista", opieka_osobista);
+        values.put("sen", sen);
+        values.put("alergie", alergie);
+
+        long id = db.insert("WazneInformacje", null, values); //zwraca id
+        return id;
+    }
+
+    public int updateWazneInformacje(WazneInformacje wazneInformacje) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("przyjmowanie_jedzenia", wazneInformacje.getPrzyjmowanie_jedzenia());
+        values.put("przyjmowanie_plynów", wazneInformacje.getPrzyjmowanie_plynów());
+        values.put("moje_bezpieczenstwo", wazneInformacje.getMoje_bezpieczenstwo());
+        values.put("korzystanie_z_toalety", wazneInformacje.getKorzystanie_z_toalety());
+        values.put("opieka_osobista", wazneInformacje.getOpieka_osobista());
+        values.put("sen", wazneInformacje.getSen());
+        values.put("alergie", wazneInformacje.getAlergie());
+
+        Integer wynik = db.update("WazneInformacje", values, "", null);
+        Log.e("wynik edycji", wynik.toString());
+        return wynik;
+    }
+
 
 
 }

@@ -65,7 +65,7 @@ public class EdytujOsobeActivity extends AppCompatActivity {
         etImieNazwisko = (EditText) findViewById(R.id.etImieNazwisko);
         etInformacje = (EditText) findViewById(R.id.etInformacje);
         ivZdjecie = (ImageView) findViewById(R.id.ivZdjecie);
-        tvDataUrodzenia = (TextView) findViewById(R.id.tvDataUrodzenia);
+        tvDataUrodzenia = (TextView) findViewById(R.id.tvprzyjmowanie_plynów);
         db = new DatabaseHelper(getApplicationContext());
 
 

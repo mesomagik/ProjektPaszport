@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 public class WazneInformacje implements Serializable{
 
-    private String moje_zmysly;
+
     private String przyjmowanie_jedzenia;
     private String przyjmowanie_plynów;
     private String moje_bezpieczenstwo;
@@ -17,7 +17,7 @@ public class WazneInformacje implements Serializable{
     private String alergie;
 
     WazneInformacje(
-             String moje_zmysly,
+
              String przyjmowanie_jedzenia,
              String przyjmowanie_plynów,
              String moje_bezpieczenstwo,
@@ -27,7 +27,6 @@ public class WazneInformacje implements Serializable{
              String alergie
     ){
         this.moje_bezpieczenstwo = moje_bezpieczenstwo;
-        this.moje_zmysly = moje_zmysly;
         this.przyjmowanie_jedzenia = przyjmowanie_jedzenia;
         this.przyjmowanie_plynów = przyjmowanie_plynów;
         this.korzystanie_z_toalety = korzystanie_z_toalety;
@@ -36,13 +35,6 @@ public class WazneInformacje implements Serializable{
         this.alergie = alergie;
     }
 
-    public String getMoje_zmysly() {
-        return moje_zmysly;
-    }
-
-    public void setMoje_zmysly(String moje_zmysly) {
-        this.moje_zmysly = moje_zmysly;
-    }
 
     public String getPrzyjmowanie_jedzenia() {
         return przyjmowanie_jedzenia;

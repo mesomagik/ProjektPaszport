@@ -88,6 +88,8 @@ public class Fragment_OMnie_opiekunowie extends Fragment {
 
         listaOsob = db.getAllOsobaByRelacja("opiekun");
         Log.e("ilosc osob w liscie", String.valueOf(listaOsob.size()));
+        List<Osoba> lekarze = db.getAllOsobaByRelacja("lekarz");
+        listaOsob.addAll(lekarze);
 
         final OsobyAdapter adapter = new OsobyAdapter();
         lvListaOsob.setAdapter(adapter);
@@ -172,7 +174,7 @@ public class Fragment_OMnie_opiekunowie extends Fragment {
                 LayoutInflater inflater = LayoutInflater.from(getActivity()); //Krzychu, tutaj rozwiązanie, trzeba było pobrać z aktywności
                 convertView = inflater.inflate(R.layout.lista_osoba, null);
                 holder.imie_nazwisko = (TextView) convertView.findViewById(R.id.tvImieNazwisko);
-                holder.relacja = (TextView) convertView.findViewById(R.id.tvRelacja);
+                holder.relacja = (TextView) convertView.findViewById(R.id.tvmoje_bezpieczenstwo);
                 holder.zdjecie = (ImageView) convertView.findViewById(R.id.ivZdjecie);
 
                 Bitmap bitmap = BitmapFactory.decodeFile(listaOsob.get(position).getZdjecie());
