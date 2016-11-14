@@ -188,7 +188,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("charakterystyczne_zachowania", sposobyKomunikacji.getCharakterystyczne_zachowania());
         values.put("przekazywanie_emocji", sposobyKomunikacji.getPrzekazywanie_emocji());
 
-        Integer wynik = db.update("SposobyKomunikacji", values, "id=0", null);
+        Integer wynik = db.update("SposobyKomunikacji", values, "", null);
         Log.e("wynik edycji", wynik.toString());
         return wynik;
     }

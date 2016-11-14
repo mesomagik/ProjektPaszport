@@ -1,14 +1,46 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.l03.projektpaszport.Fragment_SposobyKomunikacji_przekazywanie_emocji">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context="com.example.l03.projektpaszport.Fragment_SposobyKomunikacji_przekazywanie_emocji"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/fragment_sposoby_przekazywanie_emocji"
-        android:id="@+id/tvPrzekazywanieEmocji" />
+        android:id="@+id/scrollView">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="Informacje opisowe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView12"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textColor="@android:color/black"
+                android:gravity="center" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/fragment_sposoby_przekazywanie_emocji"
+                android:id="@+id/tvPrzekazywanieEmocji"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:layout_below="@+id/textView12" />
+
+        </RelativeLayout>
+    </ScrollView>
 
 </FrameLayout>
