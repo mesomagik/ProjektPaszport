@@ -3,6 +3,7 @@ package com.example.l03.projektpaszport;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -56,14 +57,22 @@ public class EdycjaSposobyKomunikacjiActivity extends AppCompatActivity {
 
                         db.updateSposobyKomunikacji(sposobyKomunikacji);
                         finish();
-                        startActivity(new Intent(getApplicationContext(), SposobyKomunikacjiActivity.class));
                     } else {
                         db.createSposobyKomunikacji(etMojeZmysly.getText().toString(),etPrzekazywanieEmocji.getText().toString(),etCharakterystyczneZachowania.getText().toString());
                         finish();
-                        startActivity(new Intent (getApplicationContext(), SposobyKomunikacjiActivity.class));
                     }
                 }
             }
         });
     }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
 }

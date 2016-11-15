@@ -84,7 +84,7 @@ public class Fragment_SposobyKomunikacji_zachowania extends Fragment {
 
         sposobyKomunikacji = db.getSposobyKomunikacji();
         if (sposobyKomunikacji != null)
-            tvZachowania.setText("Zachowania: " + sposobyKomunikacji.getCharakterystyczne_zachowania());
+            tvZachowania.setText(sposobyKomunikacji.getCharakterystyczne_zachowania());
         else
             tvZachowania.setText("Dodaj informacje");
         return rootView;

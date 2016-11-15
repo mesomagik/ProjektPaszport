@@ -82,7 +82,7 @@ public class Fragment_SposobyKomunikacji_moje_zmysly extends Fragment {
 
         sposobyKomunikacji = db.getSposobyKomunikacji();
         if (sposobyKomunikacji != null)
-            tvMojeZmysly.setText("Moje zmysły: " + sposobyKomunikacji.getMoje_zmysly());
+            tvMojeZmysly.setText(sposobyKomunikacji.getMoje_zmysly());
         else
             tvMojeZmysly.setText("Dodaj informacje");
 

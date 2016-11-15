@@ -83,7 +83,7 @@ public class Fragment_SposobyKomunikacji_przekazywanie_emocji extends Fragment {
 
         sposobyKomunikacji = db.getSposobyKomunikacji();
         if (sposobyKomunikacji != null)
-            tvPrzekazywanieEmocji.setText("Przekazywanie emocji: " + sposobyKomunikacji.getPrzekazywanie_emocji());
+            tvPrzekazywanieEmocji.setText(sposobyKomunikacji.getPrzekazywanie_emocji());
         else
             tvPrzekazywanieEmocji.setText("Dodaj informacje");
         return rootView;
