@@ -10,6 +10,7 @@ import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -40,15 +41,30 @@ public class EdytujOsobeActivity extends AppCompatActivity {
     Osoba osoba;
 
     @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+
+            finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         Zdjecie zdjecie = new Zdjecie();
         sciezka = zdjecie.getObrazekURI(requestCode,resultCode,data,getApplicationContext());
-        Log.e("sciezka",sciezka);
-        Bitmap bitmap = BitmapFactory.decodeFile(sciezka);
-        ivZdjecie.setImageBitmap(bitmap);
-
+        if(sciezka == null) {
+            sciezka="";
+            Bitmap bitmap = BitmapFactory.decodeFile(sciezka);
+            ivZdjecie.setImageBitmap(bitmap);
+        }else{
+            Log.e("sciezka", sciezka);
+            Bitmap bitmap = BitmapFactory.decodeFile(sciezka);
+            ivZdjecie.setImageBitmap(bitmap);
+        }
 
     }
 
@@ -65,7 +81,7 @@ public class EdytujOsobeActivity extends AppCompatActivity {
         etImieNazwisko = (EditText) findViewById(R.id.etImieNazwisko);
         etInformacje = (EditText) findViewById(R.id.etInformacje);
         ivZdjecie = (ImageView) findViewById(R.id.ivZdjecie);
-        tvDataUrodzenia = (TextView) findViewById(R.id.tvprzyjmowanie_plynów);
+        tvDataUrodzenia = (TextView) findViewById(R.id.tvDataUrodzenia);
         db = new DatabaseHelper(getApplicationContext());
 
 
@@ -148,7 +164,6 @@ public class EdytujOsobeActivity extends AppCompatActivity {
 
                     db.updateOsoba(osoba);
                     finish();
-                    startActivity(new Intent(getApplicationContext(), EdycjaOsobActivity.class));
                 }
             }
         });

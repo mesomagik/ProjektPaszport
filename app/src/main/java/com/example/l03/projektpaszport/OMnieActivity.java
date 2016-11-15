@@ -84,9 +84,11 @@ public class OMnieActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.osoby) {
+            finish();
             startActivity(new Intent(getApplicationContext(),EdycjaOsobActivity.class));
         }
         if (id == R.id.informacje) {
+            finish();
             startActivity(new Intent(getApplicationContext(),EdytujWazneInformacjeActivity.class));
         }
 

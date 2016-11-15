@@ -10,6 +10,7 @@ import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -37,6 +38,16 @@ public class DodajOsobeActivity extends AppCompatActivity {
     public static TextView tvDataUrodzenia;
     private List<String> relacjaList;
     private DatabaseHelper db;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+
+            finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -125,7 +136,7 @@ public class DodajOsobeActivity extends AppCompatActivity {
                             etKontakt.getText().toString(),
                             spRelacja.getSelectedItem().toString());
                     finish();
-                    startActivity(new Intent(getApplicationContext(), EdycjaOsobActivity.class));
+
                 }
             }
         });

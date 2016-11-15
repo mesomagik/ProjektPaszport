@@ -1,8 +1,10 @@
 package com.example.l03.projektpaszport;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +22,18 @@ public class EdytujWazneInformacjeActivity extends AppCompatActivity {
     private DatabaseHelper db;
     private WazneInformacje wazneInformacje;
     private Button bEdytuj;
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+
+            finish();
+            startActivity(new Intent(getApplicationContext(),OMnieActivity.class));
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +80,7 @@ public class EdytujWazneInformacjeActivity extends AppCompatActivity {
                 db.updateWazneInformacje(wazneInformacje);
 
                 finish();
-                startActivity(getIntent());
+                startActivity(new Intent(getApplicationContext(),OMnieActivity.class));
             }
         });
 
