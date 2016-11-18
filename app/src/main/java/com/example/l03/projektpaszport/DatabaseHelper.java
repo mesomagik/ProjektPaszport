@@ -74,7 +74,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put("kontakt", osoba.getKontakt());
         values.put("relacja", osoba.getRelacja());
 
-        Integer wynik = db.update("Osoba", values, "id_osoba='" + osoba.getId_osoba().toString()+"'", null);
+        Integer wynik = db.update("Osoba", values, "id_osoba='" + osoba.getId_osoba().toString() + "'", null);
         Log.e("wynik edycji", wynik.toString());
         return wynik;
 
@@ -127,7 +127,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public List<Osoba> getAllOsobaByRelacja(String relacja) {
         List<Osoba> osoby = new ArrayList<>();
-        String query = "select * from Osoba where relacja='" + relacja+"'";
+        String query = "select * from Osoba where relacja='" + relacja + "'";
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(query, null);
@@ -161,20 +161,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 sposobyKomunikacji = new SposobyKomunikacji(
                         c.getString(c.getColumnIndex("moje_zmysly")),
                         c.getString(c.getColumnIndex("charakterystyczne_zachowania")),
-                        c.getString(c.getColumnIndex("moje_zmysly")));
+                        c.getString(c.getColumnIndex("przekazywanie_emocji")));
             } while (c.moveToNext());
             c.moveToFirst();
         }
         return sposobyKomunikacji;
     }
 
-    public long createSposobyKomunikacji(String moje_zmysly, String charakterystyczne_zachowania, String przekazywanie_emocji) {
+    public long createSposobyKomunikacji(String moje_zmysly, String przekazywanie_emocji, String charakterystyczne_zachowania) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put("moje_zmysly", moje_zmysly);
-        values.put("charakterystyczne_zachowania", charakterystyczne_zachowania);
         values.put("przekazywanie_emocji", przekazywanie_emocji);
+        values.put("charakterystyczne_zachowania", charakterystyczne_zachowania);
+
 
         long id = db.insert("SposobyKomunikacji", null, values); //zwraca id
         return id;
@@ -193,14 +194,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return wynik;
     }
 
-    public void deleteSposobyKomunikacji(SposobyKomunikacji sposobyKomunikacji) {
+    public Boolean checkSposobyKomunikacjiDatabase() {
+        String query = "select * from SposobyKomunikacji";
 
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(query, null);
 
-        db.delete("SposobyKomunikacji", "id=0", null);
+        if (c.moveToFirst()) {
+            do {
+                return true;
+            } while (c.moveToNext());
+        }
+        return false;
     }
 
-    /******************** Ważne Informacje ****************************/
+    /********************
+     * Ważne Informacje
+     ****************************/
 
     public Boolean checkWazneInformacjeDatabase() {
         String query = "select * from WazneInformacje";
@@ -226,7 +236,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (c.moveToFirst()) {
             do {
-                 wazneInformacje = new WazneInformacje(
+                wazneInformacje = new WazneInformacje(
                         c.getString(c.getColumnIndex("przyjmowanie_jedzenia")),
                         c.getString(c.getColumnIndex("przyjmowanie_plynów")),
                         c.getString(c.getColumnIndex("moje_bezpieczenstwo")),
@@ -242,7 +252,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public long createWazneInformacje(String przyjmowanie_jedzenia,String przyjmowanie_plynów,String moje_bezpieczenstwo,String korzystanie_z_toalety,String opieka_osobista,String sen,String alergie) {
+    public long createWazneInformacje(String przyjmowanie_jedzenia, String przyjmowanie_plynów, String moje_bezpieczenstwo, String korzystanie_z_toalety, String opieka_osobista, String sen, String alergie) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -274,7 +284,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Log.e("wynik edycji", wynik.toString());
         return wynik;
     }
-
 
 
 }

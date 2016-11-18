@@ -3,6 +3,7 @@ package com.example.l03.projektpaszport;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -29,39 +30,26 @@ public class EdycjaSposobyKomunikacjiActivity extends AppCompatActivity {
 
         db = new DatabaseHelper(getApplicationContext());
 
-        sposobyKomunikacji = (SposobyKomunikacji) db.getSposobyKomunikacji();
-        if (sposobyKomunikacji != null)
-            etMojeZmysly.setText(sposobyKomunikacji.getMoje_zmysly());
-        else
-            etMojeZmysly.setText("Dodaj opis");
-        if (sposobyKomunikacji != null)
-            etPrzekazywanieEmocji.setText(sposobyKomunikacji.getPrzekazywanie_emocji());
-        else
-            etPrzekazywanieEmocji.setText("Dodaj opis");
-        if (sposobyKomunikacji != null)
-            etCharakterystyczneZachowania.setText(sposobyKomunikacji.getCharakterystyczne_zachowania());
-        else
-            etCharakterystyczneZachowania.setText("Dodaj opis");
+        if (!db.checkSposobyKomunikacjiDatabase()) {
+            db.createSposobyKomunikacji("Dodaj informacje", "Dodaj informacje", "Dodaj informacje");
+        }
+        sposobyKomunikacji = db.getSposobyKomunikacji();
+        Log.e("Moje zmysly: ", sposobyKomunikacji.getMoje_zmysly());
+
+        etMojeZmysly.setText(sposobyKomunikacji.getMoje_zmysly());
+        etPrzekazywanieEmocji.setText(sposobyKomunikacji.getPrzekazywanie_emocji());
+        etCharakterystyczneZachowania.setText(sposobyKomunikacji.getCharakterystyczne_zachowania());
 
         bEdytujDane.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                sposobyKomunikacji.setMoje_zmysly(etMojeZmysly.getText().toString());
+                sposobyKomunikacji.setPrzekazywanie_emocji(etPrzekazywanieEmocji.getText().toString());
+                sposobyKomunikacji.setCharakterystyczne_zachowania(etCharakterystyczneZachowania.getText().toString());
 
-                if (etMojeZmysly.getText().length() > 0
-                        && etPrzekazywanieEmocji.getText().length() > 0
-                        && etCharakterystyczneZachowania.getText().length() > 0) {
-                    if (sposobyKomunikacji != null) {
-                        sposobyKomunikacji.setMoje_zmysly(etMojeZmysly.getText().toString());
-                        sposobyKomunikacji.setPrzekazywanie_emocji(etPrzekazywanieEmocji.getText().toString());
-                        sposobyKomunikacji.setCharakterystyczne_zachowania(etCharakterystyczneZachowania.getText().toString());
-
-                        db.updateSposobyKomunikacji(sposobyKomunikacji);
-                        finish();
-                    } else {
-                        db.createSposobyKomunikacji(etMojeZmysly.getText().toString(),etPrzekazywanieEmocji.getText().toString(),etCharakterystyczneZachowania.getText().toString());
-                        finish();
-                    }
-                }
+                db.updateSposobyKomunikacji(sposobyKomunikacji);
+                finish();
+                startActivity(new Intent(getApplicationContext(), SposobyKomunikacjiActivity.class));
             }
         });
     }
@@ -70,9 +58,9 @@ public class EdycjaSposobyKomunikacjiActivity extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             finish();
+            startActivity(new Intent(getApplicationContext(), SposobyKomunikacjiActivity.class));
             return true;
         }
         return super.onKeyDown(keyCode, event);
     }
-
 }

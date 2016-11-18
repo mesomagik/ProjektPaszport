@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -67,7 +68,6 @@ public class SposobyKomunikacjiActivity extends AppCompatActivity
 
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -84,6 +84,7 @@ public class SposobyKomunikacjiActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.edycjaDanych) {
+            finish();
             startActivity(new Intent(getApplicationContext(), EdycjaSposobyKomunikacjiActivity.class));
         }
         return super.onOptionsItemSelected(item);
