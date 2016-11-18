@@ -29,6 +29,9 @@
             android:name=".MojeZdrowieActivity"
             android:label="@string/title_activity_moje_zdrowie"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".EdycjaLekarstwActivity" />
+        <activity android:name=".DodajLekarstwoActivity" />
+        <activity android:name=".EdytujLekarstwoActivity" />
         <activity
             android:name=".OMnieActivity"
             android:label="@string/title_activity_omnie"

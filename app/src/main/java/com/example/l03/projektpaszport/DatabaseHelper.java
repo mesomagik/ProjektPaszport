@@ -285,5 +285,64 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return wynik;
     }
 
+    /******************** Moje Zdrowie****************************/
+
+    public long createLekarstwo(String godzina, String ilosc, String sposob_zazycia, String zdjecie) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("godzina", godzina);
+        values.put("ilosc", ilosc);
+        values.put("sposob_zazycia", sposob_zazycia);
+        values.put("zdjecie", zdjecie);
+
+
+        long lekarstwo_id = db.insert("Lekarstwo", null, values); //zwraca id
+        return lekarstwo_id;
+    }
+    public int updateLekarstwo(Lekarstwo lekarstwo) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("godzina", lekarstwo.getGodzina());
+        values.put("ilosc", lekarstwo.getIlosc());
+        values.put("sposob_zazycia",lekarstwo.getSposob_zazycia() );
+        values.put("zdjecie",lekarstwo.getZdjecie());
+
+        Integer wynik = db.update("Lekarstwo", values, "id_lekarstwo='" + lekarstwo.getId_lekarstwo().toString()+"'", null);
+        Log.e("wynik edycji", wynik.toString());
+        return wynik;
+
+    }
+
+    public void deleteLekarstwo(Lekarstwo lekarstwo) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete("Lekarstwo", "id_lekarstwo=" + lekarstwo.getId_lekarstwo().toString(), null);
+
+    }
+
+    public List<Lekarstwo> getAllLekarstwo() {
+        List<Lekarstwo> lekarstwa = new ArrayList<>();
+        String query = "select * from Lekarstwo";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(query, null);
+
+        if (c.moveToFirst()) {
+            do {
+                Lekarstwo u = new Lekarstwo(
+                        c.getInt(c.getColumnIndex("id_lekarstwo")),
+                        c.getString(c.getColumnIndex("godzina")),
+                        c.getString(c.getColumnIndex("ilosc")),
+                        c.getString(c.getColumnIndex("sposob_zazycia")),
+                        c.getString(c.getColumnIndex("zdjecie")));
+                lekarstwa.add(u);
+            } while (c.moveToNext());
+            c.moveToFirst();
+        }
+        return lekarstwa;
+    }
+
 
 }

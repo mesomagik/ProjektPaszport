@@ -15,11 +15,11 @@ public class Lekarstwo implements Serializable{
     private String zdjecie;
 
     Lekarstwo(
-             Integer id_lekarstwo,
-             String godzina,
-             String ilosc,
-             String sposob_zazycia,
-             String zdjecie
+            Integer id_lekarstwo,
+            String godzina,
+            String ilosc,
+            String sposob_zazycia,
+            String zdjecie
     ){
         this.id_lekarstwo = id_lekarstwo;
         this.godzina = godzina;
@@ -70,4 +70,5 @@ public class Lekarstwo implements Serializable{
     public Lekarstwo returnObj(){
         return this;
     }
+
 }
