@@ -3,12 +3,19 @@ package com.example.l03.projektpaszport;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.media.MediaRecorder;
+import android.media.MediaPlayer;
+import android.widget.Button;
+import android.util.Log;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +30,19 @@ public class Fragment_SposobyKomunikacji_przekazywanie_emocji extends Fragment {
     private TextView tvPrzekazywanieEmocji;
     private DatabaseHelper db;
     private SposobyKomunikacji sposobyKomunikacji;
+
+    private static final String LOG_TAG = "AudioRecordTest";
+    private static String mFileName = "/sdcard/audiotest.3gp";
+
+    private Button mRecordButton = null;
+    MediaRecorder mRecorder = new MediaRecorder();
+
+    private Button mPlayButton = null;
+    private MediaPlayer mPlayer = new MediaPlayer();
+    FileInputStream fis = null;
+
+    boolean mStartRecording = true;
+    boolean mStartPlaying = true;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -70,6 +90,10 @@ public class Fragment_SposobyKomunikacji_przekazywanie_emocji extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        mFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
+        mFileName += "/przekazywanie_emocji.3gp";
+
     }
 
     @Override
@@ -78,6 +102,21 @@ public class Fragment_SposobyKomunikacji_przekazywanie_emocji extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_sposoby_komunikacji_przekazywanie_emocji, container, false);
         tvPrzekazywanieEmocji = (TextView) rootView.findViewById(R.id.tvPrzekazywanieEmocji);
+
+        mRecordButton = (Button) rootView.findViewById(R.id.bNagraj);
+        mRecordButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                onRecord(mStartRecording);
+                mStartRecording = !mStartRecording;
+            }
+        });
+        mPlayButton = (Button) rootView.findViewById(R.id.bOdtworz);
+        mPlayButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                onPlay(mStartPlaying);
+                mStartPlaying = !mStartPlaying;
+            }
+        });
 
         db = new DatabaseHelper(getContext());
 
@@ -127,4 +166,83 @@ public class Fragment_SposobyKomunikacji_przekazywanie_emocji extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+    // AUDIO //
+
+    private void onRecord(boolean start) {
+        if (start) {
+            startRecording();
+        } else {
+            stopRecording();
+        }
+    }
+
+    private void onPlay(boolean start) {
+        if (start) {
+            startPlaying();
+        } else {
+            stopPlaying();
+        }
+    }
+
+    private void startPlaying() {
+        mPlayer = new MediaPlayer();
+        try {
+            mPlayer.setDataSource(mFileName);
+            mPlayer.setLooping(true);
+            mPlayer.prepare();
+            mPlayer.start();
+        } catch (IOException e) {
+            Log.e(LOG_TAG, "prepare() failed");
+        } finally {
+            mPlayButton.setText("Zatrzymaj");
+        }
+    }
+
+    private void stopPlaying() {
+        mPlayer.release();
+        mPlayer = null;
+        mPlayButton.setText("Odtworz");
+    }
+
+    private void startRecording() {
+        mRecorder = new MediaRecorder();
+        mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        mRecorder.setOutputFile(mFileName);
+        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+
+        try {
+            mRecorder.prepare();
+        } catch (IOException e) {
+            Log.e(LOG_TAG, "prepare() failed");
+        }
+
+        mRecorder.start();
+        mRecordButton.setText("Zakończ nagrywanie");
+    }
+
+    private void stopRecording() {
+        mRecorder.stop();
+        mRecorder.reset();
+        mRecorder.release();
+        mRecorder = null;
+        mRecordButton.setText("Nagraj");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (mRecorder != null) {
+            mRecorder.release();
+            mRecorder = null;
+        }
+
+        if (mPlayer != null) {
+            mPlayer.release();
+            mPlayer = null;
+        }
+    }
+
+
 }

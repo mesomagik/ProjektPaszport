@@ -20,15 +20,18 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:text="Informacje opisowe"
+                android:text="Informacje dźwiękowe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView12"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentStart="true"
+                android:id="@+id/textView15"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium"
                 android:textColor="@android:color/black"
-                android:gravity="center" />
+                android:gravity="center"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="false"
+                android:layout_below="@+id/tvPrzekazywanieEmocji"
+                android:layout_alignParentEnd="true"
+                android:paddingTop="16dp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -39,6 +42,39 @@
                 android:layout_alignParentStart="true"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium"
                 android:layout_below="@+id/textView12" />
+
+            <Button
+                android:text="Nagraj"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/bNagraj"
+                android:layout_alignParentBottom="false"
+                android:layout_alignParentEnd="false"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textView15" />
+
+            <Button
+                android:text="Odtworz"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/bOdtworz"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/bNagraj" />
+
+            <TextView
+                android:text="Informacje opisowe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView12"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textColor="@android:color/black"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:gravity="center"
+                android:layout_alignParentRight="false"
+                android:layout_alignParentEnd="true" />
 
         </RelativeLayout>
     </ScrollView>
