@@ -1,28 +1,35 @@
 package com.example.l03.projektpaszport;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.List;
 
 /**
  * Created by Krzysiek on 02.11.2016.
  */
 
 public class Fragment_Preferencja_nielubie extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+
+    private ListView listView;
+    private List<Preferencja> preferencje;
+    private DatabaseHelper db;
 
     public Fragment_Preferencja_nielubie() {
         // Required empty public constructor
@@ -45,17 +52,29 @@ public class Fragment_Preferencja_nielubie extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_preferencja_nie_lubie, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_preferencja_nie_lubie, container, false);
+        listView = (ListView) rootView.findViewById(R.id.lvNieLubie);
+
+        db = new DatabaseHelper(getContext());
+
+        preferencje = db.getAllPreferencjaByLubie(false);
+
+        final PreferencjaNieLubieAdapter adapter = new PreferencjaNieLubieAdapter();
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.e("naciśnięto element","true");
+            }
+        });
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -95,5 +114,61 @@ public class Fragment_Preferencja_nielubie extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    private class PreferencjaNieLubieAdapter extends BaseAdapter {
+
+        @Override
+        public int getCount() {
+            if (preferencje != null && preferencje.size() != 0)
+                return preferencje.size();
+            return 0;
+
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return preferencje.get(position);
+        }
+
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            final ViewHolder holder;
+            if (convertView == null) {
+                holder = new ViewHolder();
+                LayoutInflater inflater = LayoutInflater.from(getActivity());
+                convertView = inflater.inflate(R.layout.preferencja_listview_item, null);
+
+                holder.opis = (TextView)convertView.findViewById(R.id.tvItemText);
+                holder.opis.setText(preferencje.get(position).getOpis());
+
+                holder.zdjecie = (ImageView) convertView.findViewById(R.id.ivItemImage);
+                Bitmap bitmap = BitmapFactory.decodeFile(preferencje.get(position).getZdjecie());
+                holder.zdjecie.setImageBitmap(bitmap);
+
+                //holder.helper = (ImageView) convertView.findViewById(R.id.ivHelper);
+                //holder.helper.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.PreferencjeRed));
+
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+            holder.ref = position;
+
+            return convertView;
+        }
+
+        private class ViewHolder {
+            ImageView zdjecie;
+            ImageView helper;
+            TextView opis;
+            int ref;
+        }
     }
 }

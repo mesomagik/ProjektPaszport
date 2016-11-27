@@ -3,19 +3,19 @@ package com.example.l03.projektpaszport;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ public class Fragment_Preferencja_lubie extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    private GridView gridView;
+    private ListView listView;
     private List<Preferencja> preferencje;
     private DatabaseHelper db;
 
@@ -62,19 +62,16 @@ public class Fragment_Preferencja_lubie extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_preferencja_lubie, container, false);
-        gridView = (GridView) rootView.findViewById(R.id.gridLayout);
+        listView = (ListView) rootView.findViewById(R.id.lvLubie);
 
         db = new DatabaseHelper(getContext());
 
-        //preferencje = db.getAllPreferencjaByLubie(true);
-
-        preferencje = new ArrayList<Preferencja>();
-        preferencje.add(new Preferencja(0,true,"C:/Users/Krzysiek/Pictures/home.png","przykładowy opis"));
+        preferencje = db.getAllPreferencjaByLubie(true);
 
         final PreferencjaLubieAdapter adapter = new PreferencjaLubieAdapter();
-        gridView.setAdapter(adapter);
+        listView.setAdapter(adapter);
 
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.e("naciśnięto element","true");
@@ -159,11 +156,17 @@ public class Fragment_Preferencja_lubie extends Fragment {
             if (convertView == null) {
                 holder = new ViewHolder();
                 LayoutInflater inflater = LayoutInflater.from(getActivity()); //byłem tak blisko...
-                convertView = inflater.inflate(R.layout.preferencja_gridview_item, null);
-                holder.zdjecie = (ImageView) convertView.findViewById(R.id.item_image);
+                convertView = inflater.inflate(R.layout.preferencja_listview_item, null);
 
+                holder.opis = (TextView)convertView.findViewById(R.id.tvItemText);
+                holder.opis.setText(preferencje.get(position).getOpis());
+
+                holder.zdjecie = (ImageView) convertView.findViewById(R.id.ivItemImage);
                 Bitmap bitmap = BitmapFactory.decodeFile(preferencje.get(position).getZdjecie());
                 holder.zdjecie.setImageBitmap(bitmap);
+
+                //holder.helper = (ImageView) convertView.findViewById(R.id.ivHelper);
+                //holder.helper.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.PreferencjeGreen));
 
                 convertView.setTag(holder);
             } else {
@@ -176,6 +179,8 @@ public class Fragment_Preferencja_lubie extends Fragment {
 
         private class ViewHolder {
             ImageView zdjecie;
+            ImageView helper;
+            TextView opis;
             int ref;
         }
     }

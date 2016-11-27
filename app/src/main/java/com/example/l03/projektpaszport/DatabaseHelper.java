@@ -285,7 +285,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return wynik;
     }
 
-    /******************** Moje Zdrowie****************************/
+    /********************
+     * Moje Zdrowie
+     ****************************/
 
     public long createLekarstwo(String godzina, String ilosc, String sposob_zazycia, String zdjecie) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -300,16 +302,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         long lekarstwo_id = db.insert("Lekarstwo", null, values); //zwraca id
         return lekarstwo_id;
     }
+
     public int updateLekarstwo(Lekarstwo lekarstwo) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put("godzina", lekarstwo.getGodzina());
         values.put("ilosc", lekarstwo.getIlosc());
-        values.put("sposob_zazycia",lekarstwo.getSposob_zazycia() );
-        values.put("zdjecie",lekarstwo.getZdjecie());
+        values.put("sposob_zazycia", lekarstwo.getSposob_zazycia());
+        values.put("zdjecie", lekarstwo.getZdjecie());
 
-        Integer wynik = db.update("Lekarstwo", values, "id_lekarstwo='" + lekarstwo.getId_lekarstwo().toString()+"'", null);
+        Integer wynik = db.update("Lekarstwo", values, "id_lekarstwo='" + lekarstwo.getId_lekarstwo().toString() + "'", null);
         Log.e("wynik edycji", wynik.toString());
         return wynik;
 
@@ -344,5 +347,95 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return lekarstwa;
     }
 
+//Preferencja
+    //CREATE TABLE Preferencja (id_preferencja INTEGER PRIMARY KEY, lubie BOOLEAN, zdjecie TEXT,opis TEXT);
 
+    public long createPreferencja(Boolean lubie, String zdjecie, String opis) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("lubie", lubie);
+        values.put("zdjecie", zdjecie);
+        values.put("opis", opis);
+
+        long preferencja_id = db.insert("Preferencja", null, values); //zwraca id
+
+        return preferencja_id;
+
+    }
+
+
+    public int updatePreferencja(Preferencja preferencja) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("id_preferencja", preferencja.getId_preferencja());
+        values.put("lubie", preferencja.getLubie());
+        values.put("zdjecie", preferencja.getZdjecie());
+        values.put("opis", preferencja.getOpis());
+
+        Integer wynik = db.update("Preferencja", values, "id_preferencja='" + preferencja.getId_preferencja().toString()+"'", null);
+        Log.e("wynik edycji", wynik.toString());
+        return wynik;
+
+    }
+
+    public void deletePreferencja(Preferencja preferencja) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete("Preferencja", "id_preferencja='" + preferencja.getId_preferencja().toString()+"'", null);
+
+    }
+
+    public List<Preferencja> getAllPreferencjaByLubie(Boolean lubie) {
+        List<Preferencja> Preferencje = new ArrayList<>();
+
+        String  booleanToInt;
+        if(lubie)
+            booleanToInt = "1";
+        else
+            booleanToInt = "0";
+
+        String query = "select * from Preferencja where lubie='" + booleanToInt+"'";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(query, null);
+
+        if (c.moveToFirst()) {
+            do {
+                Preferencje.add(
+                        new Preferencja(c.getInt(c.getColumnIndex("id_preferencja")),
+                                c.getInt(c.getColumnIndex("lubie")) > 0,
+                                c.getString(c.getColumnIndex("zdjecie")),
+                                c.getString(c.getColumnIndex("opis"))
+                        )
+                );
+            } while (c.moveToNext());
+            c.moveToFirst();
+        }
+        return Preferencje;
+    }
+
+    public List<Preferencja> getAllPreferencja() {
+        List<Preferencja> Preferencje = new ArrayList<>();
+
+        String query = "select * from Preferencja";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(query, null);
+
+        if (c.moveToFirst()) {
+            do {
+                Preferencje.add(
+                        new Preferencja(c.getInt(c.getColumnIndex("id_preferencja")),
+                                c.getInt(c.getColumnIndex("lubie")) > 0,
+                                c.getString(c.getColumnIndex("zdjecie")),
+                                c.getString(c.getColumnIndex("opis"))
+                        )
+                );
+            } while (c.moveToNext());
+            c.moveToFirst();
+        }
+        return Preferencje;
+    }
 }

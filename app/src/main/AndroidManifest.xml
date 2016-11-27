@@ -51,7 +51,10 @@
         <activity android:name=".EdytujOsobeActivity" />
         <activity android:name=".SzczegolyOsobyActivity" />
         <activity android:name=".EdytujWazneInformacjeActivity" />
-        <activity android:name=".EdycjaSposobyKomunikacjiActivity"></activity>
+        <activity android:name=".EdycjaSposobyKomunikacjiActivity" />
+        <activity android:name=".EdycjaPreferencjiActivity" />
+        <activity android:name=".DodajPreferencjeActivity" />
+        <activity android:name=".EdytujPreferencjeActivity"></activity>
     </application>
 
 </manifest>

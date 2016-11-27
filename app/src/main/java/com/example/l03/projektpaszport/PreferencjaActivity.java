@@ -1,5 +1,6 @@
 package com.example.l03.projektpaszport;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -58,16 +59,6 @@ public class PreferencjaActivity extends AppCompatActivity implements   Fragment
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
     }
 
 
@@ -86,8 +77,9 @@ public class PreferencjaActivity extends AppCompatActivity implements   Fragment
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.edycjaDanych) {
-            return true;
+        if (id == R.id.edycja) {
+            finish();
+            startActivity(new Intent(getApplicationContext(),EdycjaPreferencjiActivity.class));
         }
 
         return super.onOptionsItemSelected(item);
