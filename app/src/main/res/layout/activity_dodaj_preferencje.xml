@@ -80,8 +80,10 @@
         android:maxLength="34"
         android:ems="10"
         android:id="@+id/etOpis"
+        android:layout_below="@+id/tvOpis"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/tvOpis"/>
+        android:layout_alignEnd="@+id/tvOpis"
+        android:hint="Wpisz opis" />
 
 </RelativeLayout>
