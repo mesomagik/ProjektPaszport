@@ -59,6 +59,7 @@ public class EdycjaPreferencjiActivity extends AppCompatActivity {
         bPreferencje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                finish();
                 startActivity(new Intent(getApplicationContext(),DodajPreferencjeActivity.class));
             }
         });
@@ -68,6 +69,7 @@ public class EdycjaPreferencjiActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) { //edycja osób na kliknięcie na liście
                 Intent intent = new Intent(getApplicationContext(),EdytujPreferencjeActivity.class);
                 intent.putExtra("preferencja",preferencje.get(position).returnObj());
+                finish();
                 startActivity(intent);
             }
         });

@@ -45,6 +45,7 @@ public class EdytujOsobeActivity extends AppCompatActivity {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
 
             finish();
+            startActivity(new Intent(getApplicationContext(),EdycjaOsobActivity.class));
             return true;
         }
         return super.onKeyDown(keyCode, event);
@@ -164,6 +165,7 @@ public class EdytujOsobeActivity extends AppCompatActivity {
 
                     db.updateOsoba(osoba);
                     finish();
+                    startActivity(new Intent(getApplicationContext(),EdycjaOsobActivity.class));
                 }
             }
         });

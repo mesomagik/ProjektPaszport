@@ -44,6 +44,7 @@ public class DodajOsobeActivity extends AppCompatActivity {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
 
             finish();
+            startActivity(new Intent(getApplicationContext(),EdycjaOsobActivity.class));
             return true;
         }
         return super.onKeyDown(keyCode, event);
@@ -55,9 +56,15 @@ public class DodajOsobeActivity extends AppCompatActivity {
 
         Zdjecie zdjecie = new Zdjecie();
         sciezka = zdjecie.getObrazekURI(requestCode,resultCode,data,getApplicationContext());
-        Log.e("sciezka",sciezka);
-        Bitmap bitmap = BitmapFactory.decodeFile(sciezka);
-        ivZdjecie.setImageBitmap(bitmap);
+        if(sciezka == null) {
+            sciezka="";
+            Bitmap bitmap = BitmapFactory.decodeFile(sciezka);
+            ivZdjecie.setImageBitmap(bitmap);
+        }else{
+            Log.e("sciezka", sciezka);
+            Bitmap bitmap = BitmapFactory.decodeFile(sciezka);
+            ivZdjecie.setImageBitmap(bitmap);
+        }
 
     }
 
@@ -136,7 +143,7 @@ public class DodajOsobeActivity extends AppCompatActivity {
                             etKontakt.getText().toString(),
                             spRelacja.getSelectedItem().toString());
                     finish();
-
+                    startActivity(new Intent(getApplicationContext(),EdycjaOsobActivity.class));
                 }
             }
         });

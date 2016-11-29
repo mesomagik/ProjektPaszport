@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class Menu extends AppCompatActivity {
 
@@ -34,20 +35,20 @@ public class Menu extends AppCompatActivity {
         bMojeZdrowie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), MojeZdrowieActivity.class));
+            startActivity(new Intent(getApplicationContext(), MojeZdrowieActivity.class));
             }
         });
 
         bSposobyKomunikacji.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), SposobyKomunikacjiActivity.class));
+            startActivity(new Intent(getApplicationContext(), SposobyKomunikacjiActivity.class));
             }
         });
         bLubieNieLubie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),PreferencjaActivity.class));
+            startActivity(new Intent(getApplicationContext(),PreferencjaActivity.class));
             }
         });
     }
