@@ -9,30 +9,37 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="74dp">
+        android:layout_height="75dp"
+        android:layout_weight="0.20"
+        android:weightSum="1">
 
         <ImageView
             android:id="@+id/ivItemImage"
             android:layout_width="75dp"
             android:layout_height="75dp"
-            android:layout_weight=".2"
             android:layout_marginLeft="10dp">
         </ImageView>
 
         <TextView
             android:text="TextView"
-            android:layout_width="294dp"
-            android:layout_height="75dp"
+            android:layout_width="183dp"
+            android:layout_height="match_parent"
             android:id="@+id/tvItemText"
-            android:layout_weight=".7"
             android:layout_marginRight="5dp"
-            android:textSize="28sp" />
+            android:textSize="28sp"
+            android:layout_weight="0.22" />
+        <TextView
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:id="@+id/tvKategoria"
+            android:textSize="28sp"
+            android:layout_weight="0.65" />
 
         <ImageView
             android:layout_width="10dp"
-            android:layout_height="75dp"
-            android:id="@+id/ivHelper"
-            android:layout_weight=".1" />
+            android:layout_height="match_parent"
+            android:id="@+id/ivHelper"/>
 
     </LinearLayout>
 

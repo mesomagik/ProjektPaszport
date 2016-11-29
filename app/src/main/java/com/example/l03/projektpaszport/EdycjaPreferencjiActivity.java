@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EdycjaPreferencjiActivity extends AppCompatActivity {
@@ -139,11 +140,16 @@ public class EdycjaPreferencjiActivity extends AppCompatActivity {
                 Bitmap bitmap = BitmapFactory.decodeFile(preferencje.get(position).getZdjecie());
                 holder.zdjecie.setImageBitmap(bitmap);
 
+                holder.kategoria = (TextView) convertView.findViewById(R.id.tvKategoria);
                 holder.helper = (ImageView) convertView.findViewById(R.id.ivHelper);
-                if(preferencje.get(position).getLubie())
+                if(preferencje.get(position).getLubie()){
                     holder.helper.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.PreferencjeGreen));
-                else
+                    holder.kategoria.setText("L");
+                }
+                else{
                     holder.helper.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.PreferencjeRed));
+                    holder.kategoria.setText("NL");
+                }
 
                 convertView.setTag(holder);
             } else {
@@ -157,6 +163,7 @@ public class EdycjaPreferencjiActivity extends AppCompatActivity {
         private class ViewHolder {
             ImageView zdjecie;
             ImageView helper;
+            TextView kategoria;
             TextView opis;
             int ref;
         }
