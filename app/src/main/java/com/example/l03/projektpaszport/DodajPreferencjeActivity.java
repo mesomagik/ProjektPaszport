@@ -34,6 +34,7 @@ public class DodajPreferencjeActivity extends AppCompatActivity {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
 
             finish();
+            startActivity(new Intent(getApplicationContext(),EdycjaPreferencjiActivity.class));
             return true;
         }
         return super.onKeyDown(keyCode, event);
