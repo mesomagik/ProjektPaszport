@@ -87,6 +87,11 @@ public class SposobyKomunikacjiActivity extends AppCompatActivity
             finish();
             startActivity(new Intent(getApplicationContext(), EdycjaSposobyKomunikacjiActivity.class));
         }
+
+        if (id == R.id.edycjaDzwieku) {
+            finish();
+            startActivity(new Intent(getApplicationContext(), EdycjaSposobyKomunikacjiDzwiekActivity.class));
+        }
         return super.onOptionsItemSelected(item);
     }
 

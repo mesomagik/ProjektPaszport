@@ -14,9 +14,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
-
-import java.util.List;
 
 public class DodajPreferencjeActivity extends AppCompatActivity {
 
@@ -57,7 +54,7 @@ public class DodajPreferencjeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dodaj_preferencje);
 
-        bDodajPreferencje = (Button) findViewById(R.id.bDodajPreferencje);
+        bDodajPreferencje = (Button) findViewById(R.id.bEdytujPreferencje);
         ivZdjecie = (ImageView) findViewById(R.id.ivZdjecie);
         bZdjecie = (Button) findViewById(R.id.bZdjecie);
         radioGroup = (RadioGroup) findViewById(R.id.rgRadioGroup);

@@ -34,12 +34,11 @@ public class Fragment_SposobyKomunikacji_przekazywanie_emocji extends Fragment {
     private static final String LOG_TAG = "AudioRecordTest";
     private static String mFileName = "/sdcard/audiotest.3gp";
 
-    private Button mRecordButton = null;
-    MediaRecorder mRecorder = new MediaRecorder();
+//    private Button mRecordButton = null;
+//    MediaRecorder mRecorder = new MediaRecorder();
 
     private Button mPlayButton = null;
     private MediaPlayer mPlayer = new MediaPlayer();
-    FileInputStream fis = null;
 
     boolean mStartRecording = true;
     boolean mStartPlaying = true;
@@ -103,13 +102,13 @@ public class Fragment_SposobyKomunikacji_przekazywanie_emocji extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_sposoby_komunikacji_przekazywanie_emocji, container, false);
         tvPrzekazywanieEmocji = (TextView) rootView.findViewById(R.id.tvPrzekazywanieEmocji);
 
-        mRecordButton = (Button) rootView.findViewById(R.id.bNagraj);
-        mRecordButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                onRecord(mStartRecording);
-                mStartRecording = !mStartRecording;
-            }
-        });
+//        mRecordButton = (Button) rootView.findViewById(R.id.bNagraj);
+//        mRecordButton.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                onRecord(mStartRecording);
+//                mStartRecording = !mStartRecording;
+//            }
+//        });
         mPlayButton = (Button) rootView.findViewById(R.id.bOdtworz);
         mPlayButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -169,13 +168,13 @@ public class Fragment_SposobyKomunikacji_przekazywanie_emocji extends Fragment {
 
     // AUDIO //
 
-    private void onRecord(boolean start) {
-        if (start) {
-            startRecording();
-        } else {
-            stopRecording();
-        }
-    }
+//    private void onRecord(boolean start) {
+//        if (start) {
+//            startRecording();
+//        } else {
+//            stopRecording();
+//        }
+//    }
 
     private void onPlay(boolean start) {
         if (start) {
@@ -205,38 +204,38 @@ public class Fragment_SposobyKomunikacji_przekazywanie_emocji extends Fragment {
         mPlayButton.setText("Odtworz");
     }
 
-    private void startRecording() {
-        mRecorder = new MediaRecorder();
-        mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-        mRecorder.setOutputFile(mFileName);
-        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+//    private void startRecording() {
+//        mRecorder = new MediaRecorder();
+//        mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+//        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+//        mRecorder.setOutputFile(mFileName);
+//        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+//
+//        try {
+//            mRecorder.prepare();
+//        } catch (IOException e) {
+//            Log.e(LOG_TAG, "prepare() failed");
+//        }
+//
+//        mRecorder.start();
+//        mRecordButton.setText("Zakończ nagrywanie");
+//    }
 
-        try {
-            mRecorder.prepare();
-        } catch (IOException e) {
-            Log.e(LOG_TAG, "prepare() failed");
-        }
-
-        mRecorder.start();
-        mRecordButton.setText("Zakończ nagrywanie");
-    }
-
-    private void stopRecording() {
-        mRecorder.stop();
-        mRecorder.reset();
-        mRecorder.release();
-        mRecorder = null;
-        mRecordButton.setText("Nagraj");
-    }
+//    private void stopRecording() {
+//        mRecorder.stop();
+//        mRecorder.reset();
+//        mRecorder.release();
+//        mRecorder = null;
+//        mRecordButton.setText("Nagraj");
+//    }
 
     @Override
     public void onPause() {
         super.onPause();
-        if (mRecorder != null) {
-            mRecorder.release();
-            mRecorder = null;
-        }
+//        if (mRecorder != null) {
+//            mRecorder.release();
+//            mRecorder = null;
+//        }
 
         if (mPlayer != null) {
             mPlayer.release();

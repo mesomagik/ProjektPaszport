@@ -54,7 +54,8 @@
         <activity android:name=".EdycjaSposobyKomunikacjiActivity" />
         <activity android:name=".EdycjaPreferencjiActivity" />
         <activity android:name=".DodajPreferencjeActivity" />
-        <activity android:name=".EdytujPreferencjeActivity"></activity>
+        <activity android:name=".EdytujPreferencjeActivity" />
+        <activity android:name=".EdycjaSposobyKomunikacjiDzwiekActivity"></activity>
     </application>
 
 </manifest>

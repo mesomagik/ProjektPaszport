@@ -61,7 +61,7 @@ public class EdytujPreferencjeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edytuj_preferencje);
 
-        bEdytujPreferencje = (Button) findViewById(R.id.bDodajPreferencje);
+        bEdytujPreferencje = (Button) findViewById(R.id.bEdytujPreferencje);
         ivZdjecie = (ImageView) findViewById(R.id.ivZdjecie);
         bZdjecie = (Button) findViewById(R.id.bZdjecie);
         radioGroup = (RadioGroup) findViewById(R.id.rgRadioGroup);

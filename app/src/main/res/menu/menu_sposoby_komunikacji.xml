@@ -3,7 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.l03.projektpaszport.SposobyKomunikacjiActivity">
     <item
+        android:title="Edycja dźwięku"
+        android:id="@+id/edycjaDzwieku"
+        android:orderInCategory="100" />
+    <item
         android:id="@+id/edycjaDanych"
-        android:orderInCategory="100"
+        android:orderInCategory="101"
         android:title="Edycja danych" />
 </menu>

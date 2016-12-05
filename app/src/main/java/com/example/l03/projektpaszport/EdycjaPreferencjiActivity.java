@@ -46,7 +46,7 @@ public class EdycjaPreferencjiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edycja_preferencji);
 
-        bPreferencje = (Button) findViewById(R.id.bDodajPreferencje);
+        bPreferencje = (Button) findViewById(R.id.bEdytujPreferencje);
         lvPreferecji = (ListView) findViewById(R.id.lvPreferencje);
 
         db = new DatabaseHelper(getApplicationContext());
