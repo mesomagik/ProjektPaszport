@@ -55,7 +55,11 @@
         <activity android:name=".EdycjaPreferencjiActivity" />
         <activity android:name=".DodajPreferencjeActivity" />
         <activity android:name=".EdytujPreferencjeActivity" />
-        <activity android:name=".EdycjaSposobyKomunikacjiDzwiekActivity"></activity>
+        <activity android:name=".EdycjaSposobyKomunikacjiDzwiekActivity" />
+        <activity android:name=".DodajVideoActivity" />
+        <activity android:name=".EdycjaVideoActivity" />
+        <activity android:name=".PokazVideoActivity" />
+        <activity android:name=".EdytujVideoActivity"></activity>
     </application>
 
 </manifest>

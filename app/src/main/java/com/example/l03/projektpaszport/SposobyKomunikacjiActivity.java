@@ -24,7 +24,8 @@ import android.widget.TextView;
 public class SposobyKomunikacjiActivity extends AppCompatActivity
                     implements Fragment_SposobyKomunikacji_moje_zmysly.OnFragmentInteractionListener,
                         Fragment_SposobyKomunikacji_przekazywanie_emocji.OnFragmentInteractionListener,
-                        Fragment_SposobyKomunikacji_zachowania.OnFragmentInteractionListener{
+                        Fragment_SposobyKomunikacji_zachowania.OnFragmentInteractionListener,
+                        Fragment_SposobyKomunikacji_Emocje.OnFragmentInteractionListener{
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -92,6 +93,12 @@ public class SposobyKomunikacjiActivity extends AppCompatActivity
             finish();
             startActivity(new Intent(getApplicationContext(), EdycjaSposobyKomunikacjiDzwiekActivity.class));
         }
+
+        if (id == R.id.video) {
+            finish();
+            startActivity(new Intent(getApplicationContext(), EdycjaVideoActivity.class));
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -152,6 +159,8 @@ public class SposobyKomunikacjiActivity extends AppCompatActivity
                     return Fragment_SposobyKomunikacji_przekazywanie_emocji.newInstance();
                 case 2:
                     return Fragment_SposobyKomunikacji_zachowania.newInstance();
+                case 3:
+                    return Fragment_SposobyKomunikacji_Emocje.newInstance();
             }
             return null;
         }
@@ -159,7 +168,7 @@ public class SposobyKomunikacjiActivity extends AppCompatActivity
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 4;
         }
 
         @Override
@@ -171,6 +180,8 @@ public class SposobyKomunikacjiActivity extends AppCompatActivity
                     return "Przekazywanie emocji";
                 case 2:
                     return "Charakterystyczne zachowania";
+                case 3:
+                    return "Emocje";
             }
             return null;
         }

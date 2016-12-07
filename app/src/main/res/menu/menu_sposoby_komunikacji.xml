@@ -10,4 +10,8 @@
         android:id="@+id/edycjaDanych"
         android:orderInCategory="101"
         android:title="Edycja danych" />
+    <item
+        android:id="@+id/video"
+        android:orderInCategory="102"
+        android:title="Edycja Filmów" />
 </menu>

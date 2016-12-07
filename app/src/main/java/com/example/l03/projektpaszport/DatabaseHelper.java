@@ -17,7 +17,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public DatabaseHelper(Context context) {
-        super(context, "baza", null, 5);
+        super(context, "baza", null, 6);
     }
 
     @Override
@@ -28,6 +28,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE Lekarstwo (id_lekarstwo INTEGER PRIMARY KEY, godzina TEXT, ilosc TEXT,sposob_zazycia TEXT,zdjecie TEXT);");
         db.execSQL("CREATE TABLE Preferencja (id_preferencja INTEGER PRIMARY KEY, lubie BOOLEAN, zdjecie TEXT,opis TEXT);");
         db.execSQL("CREATE TABLE SposobyKomunikacji (moje_zmysly TEXT, charakterystyczne_zachowania TEXT, przekazywanie_emocji TEXT);");
+        db.execSQL("CREATE TABLE Video (id_video INTEGER PRIMARY KEY, url TEXT, opis TEXT)");
         db.execSQL("CREATE TABLE WazneInformacje (przyjmowanie_jedzenia TEXT, przyjmowanie_plynów TEXT, moje_bezpieczenstwo TEXT, korzystanie_z_toalety TEXT, opieka_osobista TEXT, sen TEXT, alergie TEXT);");
 
     }
@@ -41,9 +42,60 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS Preferencja");
         db.execSQL("DROP TABLE IF EXISTS SposobyKomunikacji");
         db.execSQL("DROP TABLE IF EXISTS WazneInformacje");
+        db.execSQL("DROP TABLE IF EXISTS video");
 
         onCreate(db);
 
+    }
+
+    public long createVideo( String url, String opis){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("url",url);
+        values.put("opis",opis);
+
+        long id_video = db.insert("Video",null,values);
+        return id_video;
+    }
+
+    public long updateVideo(MojeVideo video){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("url",video.getUrl());
+        values.put("opis",video.getOpis());
+
+        Integer wynik = db.update("Video",values,"id_video='" + video.getId_video().toString() +"'",null);
+        return wynik;
+    }
+
+    public void deleteVideo(MojeVideo video){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete("Video","id_video='" + video.getId_video().toString() +"'",null);
+    }
+
+    public List<MojeVideo> getAllMojeVideo(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        List<MojeVideo> listVideo = new ArrayList<>();
+
+        String query = "select * from Video";
+        Cursor c = db.rawQuery(query,null);
+
+        if(c.moveToFirst()){
+            do{
+                MojeVideo vid = new MojeVideo(
+                        c.getInt(c.getColumnIndex("id_video")),
+                        c.getString(c.getColumnIndex("url")),
+                        c.getString(c.getColumnIndex("opis"))
+                );
+                listVideo.add(vid);
+            }while(c.moveToNext());
+            c.moveToFirst();
+        }
+        return listVideo;
     }
 
     public long createOsoba(String imie_nazwisko, String zdjecie, String informacje, String data_ur, String kontakt, String relacja) {
