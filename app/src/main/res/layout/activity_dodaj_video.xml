@@ -15,7 +15,8 @@
         android:text="Wybierz Film"
         android:id="@+id/bWybierzFilm"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:elevation="0dp" />
 
     <EditText
         android:layout_width="wrap_content"

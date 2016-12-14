@@ -101,7 +101,7 @@ public class EdycjaVideoActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(EdycjaVideoActivity.this);
-                        builder.setTitle("czy na pewno chcesz usunąć osobę?");
+                        builder.setTitle("czy na pewno chcesz usunąć film?");
                         builder.setPositiveButton("tak", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

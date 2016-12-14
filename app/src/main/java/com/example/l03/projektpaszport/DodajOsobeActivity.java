@@ -61,11 +61,9 @@ public class DodajOsobeActivity extends AppCompatActivity {
             Bitmap bitmap = BitmapFactory.decodeFile(sciezka);
             ivZdjecie.setImageBitmap(bitmap);
         }else{
-            Log.e("sciezka", sciezka);
             Bitmap bitmap = BitmapFactory.decodeFile(sciezka);
             ivZdjecie.setImageBitmap(bitmap);
         }
-
     }
 
 

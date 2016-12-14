@@ -106,6 +106,7 @@ public class DodajPreferencjeActivity extends AppCompatActivity {
                             sciezka,
                             etOpis.getText().toString());
                     finish();
+                    startActivity(new Intent(getApplicationContext(),EdycjaPreferencjiActivity.class));
 
                 }
             }
