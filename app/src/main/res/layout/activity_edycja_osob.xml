@@ -25,7 +25,8 @@
         android:text="Dodaj nową osobę"
         android:id="@+id/bDodajOsobe"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        style="@style/Widget.AppCompat.Button.Colored" />
 
     <ListView
         android:layout_width="wrap_content"

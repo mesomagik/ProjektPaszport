@@ -10,7 +10,7 @@
     tools:context="com.example.l03.projektpaszport.EdycjaVideoActivity">
 
     <Button
-        style="?android:attr/buttonStyleSmall"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Dodaj Film"

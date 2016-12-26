@@ -50,7 +50,8 @@
                 android:id="@+id/bOdtworz"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/textView15" />
+                android:layout_below="@+id/textView15"
+                style="@style/Widget.AppCompat.Button.Colored" />
 
             <TextView
                 android:text="Informacje opisowe"

@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/bZdjecie"
 
-                />
+                style="@style/Widget.AppCompat.Button.Colored" />
 
             <TextView
                 android:text="Ilosc"
@@ -85,7 +85,8 @@
                 android:text="Edytuj Lekarstwo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/bEdytujLekarstwo"/>
+                android:id="@+id/bEdytujLekarstwo"
+                style="@style/Widget.AppCompat.Button.Colored" />
 
         </LinearLayout>
     </ScrollView>

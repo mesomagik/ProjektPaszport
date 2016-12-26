@@ -29,7 +29,8 @@
         android:layout_below="@+id/textView18"
         android:layout_alignParentEnd="true"
         android:id="@+id/bNagraj"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        style="@style/Widget.AppCompat.Button.Colored" />
 
     <Button
         android:text="Odtwórz"
@@ -39,5 +40,6 @@
         android:layout_alignStart="@+id/textView18"
         android:id="@+id/bOdtworz"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        style="@style/Widget.AppCompat.Button.Colored" />
 </RelativeLayout>
